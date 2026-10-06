@@ -53,7 +53,7 @@ export default function ContactPage() {
             <div className="space-y-3">
               {/* WhatsApp */}
               <a
-                href={COMPANY_INFO.socials.whatsapp}
+                href="https://wa.me/923091699666"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 transition-colors"
@@ -70,7 +70,7 @@ export default function ContactPage() {
 
               {/* Instagram */}
               <a
-                href={COMPANY_INFO.socials.instagram}
+                href="https://www.instagram.com/surgilence_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-colors"
@@ -91,7 +91,7 @@ export default function ContactPage() {
 
               {/* Facebook */}
               <a
-                href={COMPANY_INFO.socials.facebook}
+                href="https://www.facebook.com/Surgilence01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-colors"

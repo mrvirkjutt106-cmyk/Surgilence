@@ -98,7 +98,7 @@ export default function CatalogPage() {
       </section>
 
       {/* Filter & Controls Toolbar */}
-      <div className="bg-slate-50 border-b border-slate-200 py-5 sticky top-[72px] z-20 backdrop-blur-md bg-opacity-95">
+      <div className="catalog-toolbar">
         <div className="container">
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
             {/* Category Switcher Tabs */}
@@ -135,21 +135,21 @@ export default function CatalogPage() {
 
             {/* Search Bar & Sort Dropdown */}
             <div className="flex items-center gap-3">
-              <div className="relative flex-1 sm:w-64">
-                <IconSearch size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <div className="catalog-search-wrap">
+                <IconSearch size={16} className="catalog-search-icon" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search item or SKU..."
-                  className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm bg-white border border-slate-200 rounded-lg outline-none focus:border-teal-600 transition-colors"
+                  className="catalog-search-input"
                 />
               </div>
 
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="py-1.5 px-3 text-xs sm:text-sm bg-white border border-slate-200 rounded-lg outline-none focus:border-teal-600 font-medium text-slate-700"
+                className="catalog-sort-select"
               >
                 <option value="featured">Featured</option>
                 <option value="price-asc">Price: Low to High</option>

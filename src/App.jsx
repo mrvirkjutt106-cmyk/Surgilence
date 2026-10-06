@@ -15,6 +15,7 @@ import ContactPage from './pages/ContactPage';
 import WhatsAppToggle from './components/WhatsAppToggle';
 import SurgilenceAIAgent from './components/SurgilenceAIAgent';
 import { IconCheck } from './components/Icons';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function AppContent() {
   const { toastMessage } = useCart();
@@ -56,13 +57,14 @@ function AppContent() {
     </div>
   );
 }
-
 export default function App() {
   return (
-    <BrowserRouter>
-      <CartProvider>
-        <AppContent />
-      </CartProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }

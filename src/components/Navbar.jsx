@@ -33,30 +33,6 @@ export default function Navbar() {
 
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
-      {/* Top Announcement Bar */}
-      <div className="top-announcement-bar">
-        <div className="container">
-          <div className="announcement-content">
-            <div className="flex items-center gap-2">
-              <span className="announcement-tag">GLOBAL EXPORT</span>
-              <span className="announcement-text hidden sm:inline">
-                Direct Manufacturer USD Pricing • ISO 13485:2016 &amp; CE MDR Certified
-              </span>
-            </div>
-            <a
-              href="https://wa.me/923091699666"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="top-wa-link"
-              title="Official WhatsApp Export Desk"
-            >
-              <IconPhone size={13} />
-              <span>WhatsApp: +92 309 1699666</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Navbar */}
       <div className="container">
         <div className="navbar-inner">

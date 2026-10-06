@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="footer-social-row">
               {/* Instagram */}
               <a
-                href={COMPANY_INFO.socials.instagram}
+                href="https://www.instagram.com/surgilence_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-icon"
@@ -38,7 +38,7 @@ export default function Footer() {
 
               {/* Facebook */}
               <a
-                href={COMPANY_INFO.socials.facebook}
+                href="https://www.facebook.com/Surgilence01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-icon"
@@ -52,7 +52,7 @@ export default function Footer() {
 
               {/* WhatsApp */}
               <a
-                href={COMPANY_INFO.socials.whatsapp}
+                href="https://wa.me/923091699666"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-icon text-emerald-600"
@@ -102,7 +102,7 @@ export default function Footer() {
               </p>
               <p>
                 <strong className="text-slate-800 block">Direct WhatsApp Desk:</strong>
-                <a href={COMPANY_INFO.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="text-teal-700 font-semibold hover:underline">
+                <a href="https://wa.me/923091699666" target="_blank" rel="noopener noreferrer" className="text-teal-700 font-semibold hover:underline">
                   +92 309 1699666
                 </a>
               </p>

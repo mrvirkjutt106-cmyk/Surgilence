@@ -320,7 +320,7 @@ export default function HomePage() {
       {/* Commercial Inquiry CTA Card */}
       <section className="section-py bg-slate-50">
         <div className="container">
-          <div className="bg-gradient-to-r from-teal-50 to-sky-50 border border-teal-200 rounded-2xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="cta-banner-box">
             <div className="max-w-xl">
               <span className="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-2">
                 HOSPITAL TENDERS &amp; DISTRIBUTORS

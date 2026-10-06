@@ -33,8 +33,9 @@ export default function CheckoutPage() {
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
 
+  const safeSubtotal = Number(cartSubtotalUSD || 0);
   const shippingCost = cartItems.length === 0 ? 0 : shippingMethod === 'dhl' ? 35.00 : 85.00;
-  const grandTotal = cartSubtotalUSD + shippingCost;
+  const grandTotal = safeSubtotal + shippingCost;
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
