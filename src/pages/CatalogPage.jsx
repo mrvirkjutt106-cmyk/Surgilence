@@ -100,9 +100,9 @@ export default function CatalogPage() {
       {/* Filter & Controls Toolbar */}
       <div className="catalog-toolbar">
         <div className="container">
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
-            {/* Category Switcher Tabs */}
-            <div className="flex flex-wrap items-center gap-2">
+          <div className="catalog-toolbar-wrapper">
+            {/* Category Switcher Tabs (Horizontal scroll on mobile) */}
+            <div className="catalog-category-pills-bar">
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
@@ -134,7 +134,7 @@ export default function CatalogPage() {
             </div>
 
             {/* Search Bar & Sort Dropdown */}
-            <div className="flex items-center gap-3">
+            <div className="catalog-search-sort-bar">
               <div className="catalog-search-wrap">
                 <IconSearch size={16} className="catalog-search-icon" />
                 <input
@@ -161,7 +161,7 @@ export default function CatalogPage() {
 
           {/* Subcategory Pills if in Surgical or Dental */}
           {availableSubcategories.length > 1 && (
-            <div className="flex items-center gap-1.5 overflow-x-auto pt-3 pb-1 mt-2 border-t border-slate-200 text-xs">
+            <div className="catalog-subcat-bar">
               <span className="text-slate-400 font-semibold uppercase text-[10px] mr-1 shrink-0">Subspecialty:</span>
               {availableSubcategories.map((sub) => (
                 <button

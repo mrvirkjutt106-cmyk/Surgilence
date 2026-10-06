@@ -1858,24 +1858,73 @@ button, input, select, textarea {
 
 
 .catalog-toolbar {
-  background: rgba(248, 250, 252, 0.96);
+  background: rgba(248, 250, 252, 0.98);
   border-bottom: 1px solid var(--border-light);
-  padding: 1rem 0;
+  padding: 0.85rem 0;
   position: sticky;
-  top: 65px;
+  top: 61px;
   z-index: 20;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  transition: all var(--transition-fast);
+}
+
+.catalog-toolbar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .catalog-toolbar-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+}
+
+.catalog-category-pills-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.catalog-category-pills-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.catalog-category-pills-bar .btn {
+  flex-shrink: 0;
+}
+
+.catalog-search-sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .catalog-search-sort-bar {
+    width: auto;
+  }
 }
 
 .catalog-search-wrap {
   position: relative;
   flex: 1;
+  min-width: 0;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1024px) {
   .catalog-search-wrap {
-    width: 17rem;
+    width: 18rem;
     flex: none;
   }
 }
@@ -1891,7 +1940,7 @@ button, input, select, textarea {
 
 .catalog-search-input {
   width: 100%;
-  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  padding: 0.55rem 0.75rem 0.55rem 2.25rem;
   font-size: 0.85rem;
   background: #ffffff;
   border: 1px solid var(--border-light);
@@ -1907,7 +1956,7 @@ button, input, select, textarea {
 }
 
 .catalog-sort-select {
-  padding: 0.5rem 0.85rem;
+  padding: 0.55rem 0.85rem;
   font-size: 0.85rem;
   background: #ffffff;
   border: 1px solid var(--border-light);
@@ -1916,11 +1965,30 @@ button, input, select, textarea {
   font-weight: 600;
   color: var(--color-text-main);
   cursor: pointer;
+  flex-shrink: 0;
   transition: border-color var(--transition-fast);
 }
 
 .catalog-sort-select:focus {
   border-color: var(--teal-600);
+}
+
+.catalog-subcat-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-top: 0.65rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.75rem;
+}
+
+.catalog-subcat-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .cta-banner-box {
@@ -2946,6 +3014,810 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* =====================================================================
+   SURGILENCE (PVT) LTD - COMPREHENSIVE MOBILE RESPONSIVE ENGINE
+   Rigid Alignment | Logical Sequence | Ergonomic Touch Targets | Zero Overflow
+   ===================================================================== */
+
+/* 1. Global Viewport & Container Resets for Mobile */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    position: relative;
+  }
+
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Prevent awkward large headings on mobile */
+  h1 {
+    font-size: clamp(1.65rem, 6.5vw, 2.35rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 5.2vw, 1.85rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .section-py {
+    padding: 2.75rem 0 !important;
+  }
+
+  .section-header-center {
+    margin-bottom: 2rem !important;
+  }
+
+  .section-desc {
+    font-size: 0.88rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }
+}
+
+/* 2. Header & Sticky Navbar on Mobile */
+@media (max-width: 640px) {
+  .navbar-inner {
+    padding: 0.55rem 0 !important;
+    gap: 0.5rem !important;
+  }
+
+  .brand-link {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .brand-logo-container {
+    gap: 0.45rem !important;
+  }
+
+  .brand-logo-img {
+    height: 32px !important;
+    max-width: 34px !important;
+  }
+
+  .brand-name-title {
+    font-size: 1.05rem !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .brand-name-pvt {
+    font-size: 0.58rem !important;
+    padding: 0.08rem 0.28rem !important;
+  }
+
+  /* Hide subtitle on mobile to give space for action buttons */
+  .brand-name-sub {
+    display: none !important;
+  }
+
+  .navbar-actions {
+    gap: 0.35rem !important;
+    flex-shrink: 0;
+  }
+
+  .navbar-actions .btn-sm {
+    padding: 0.4rem 0.55rem !important;
+    height: 35px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .mobile-menu-toggle {
+    width: 35px !important;
+    height: 35px !important;
+    padding: 0 !important;
+  }
+
+  .quote-badge-counter,
+  .cart-badge-counter {
+    min-width: 16px !important;
+    height: 16px !important;
+    font-size: 0.65rem !important;
+    padding: 0 3px !important;
+  }
+
+  .mobile-dropdown-menu {
+    padding: 0.75rem 0 !important;
+    gap: 0.25rem !important;
+  }
+
+  .mobile-nav-link {
+    padding: 0.65rem 0.85rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  .mobile-menu-actions {
+    margin-top: 0.65rem !important;
+    padding-top: 0.65rem !important;
+    gap: 0.5rem !important;
+  }
+}
+
+/* 3. Hero Section Mobile Optimization */
+@media (max-width: 768px) {
+  .home-hero-section {
+    padding: 1.75rem 0 2.5rem !important;
+  }
+
+  .hero-main-grid {
+    gap: 1.75rem !important;
+  }
+
+  .hero-trust-tag {
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.65rem !important;
+    margin-bottom: 0.85rem !important;
+    width: fit-content !important;
+    max-width: 100% !important;
+  }
+
+  .hero-headline {
+    font-size: clamp(1.65rem, 6.8vw, 2.35rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.85rem !important;
+    word-break: break-word !important;
+  }
+
+  .hero-lead-text {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.35rem !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+
+  .hero-cta-group .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    height: 48px !important;
+    font-size: 0.92rem !important;
+  }
+
+  .hero-metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+
+  .metric-pill-card {
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  .metric-pill-val {
+    font-size: 1.2rem !important;
+  }
+
+  .metric-pill-lbl {
+    font-size: 0.68rem !important;
+  }
+
+  .hero-visual-frame {
+    padding: 0.85rem !important;
+    border-radius: var(--radius-md) !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .hero-floating-badge {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.68rem !important;
+    gap: 0.35rem !important;
+  }
+
+  .hero-floating-badge.badge-top {
+    top: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+
+  .hero-floating-badge.badge-bottom {
+    bottom: 0.5rem !important;
+    left: 0.5rem !important;
+  }
+}
+
+/* 4. Portfolio Categories & Specialization Grid */
+@media (max-width: 640px) {
+  .categories-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .category-card {
+    padding: 1.25rem 1rem !important;
+  }
+
+  .category-icon-bubble {
+    width: 44px !important;
+    height: 44px !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .category-name {
+    font-size: 1.1rem !important;
+  }
+
+  .category-desc {
+    font-size: 0.82rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .cta-banner-box {
+    padding: 1.5rem 1rem !important;
+    gap: 1.25rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+}
+
+/* 5. Product Grid & Cards on Mobile */
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.15rem !important;
+  }
+
+  .product-card {
+    padding: 1rem !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .product-card-img-wrap {
+    height: 220px !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 1rem !important;
+  }
+
+  .product-card-title {
+    font-size: 0.95rem !important;
+    min-height: auto !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .product-specs-pills {
+    margin-bottom: 0.65rem !important;
+  }
+
+  .product-card-pricing {
+    padding-top: 0.5rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .price-main-val {
+    font-size: 1.25rem !important;
+  }
+
+  .product-card-actions {
+    grid-template-columns: 1fr 1.3fr !important;
+    gap: 0.45rem !important;
+  }
+
+  .product-card-actions .btn {
+    height: 38px !important;
+    font-size: 0.8rem !important;
+    padding: 0.4rem 0.5rem !important;
+  }
+}
+
+/* 6. Catalog Toolbar & Filters on Mobile */
+@media (max-width: 900px) {
+  .catalog-toolbar {
+    top: 52px !important;
+    padding: 0.65rem 0 !important;
+  }
+
+  .catalog-toolbar-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+  }
+
+  .catalog-category-pills-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 3px !important;
+  }
+
+  .catalog-category-pills-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .catalog-category-pills-bar .btn {
+    flex-shrink: 0 !important;
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.78rem !important;
+    height: 34px !important;
+  }
+
+  .catalog-search-sort-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+  }
+
+  .catalog-search-wrap {
+    flex: 1 !important;
+    min-width: 0 !important;
+    width: auto !important;
+  }
+
+  .catalog-search-input {
+    padding: 0.48rem 0.65rem 0.48rem 2.1rem !important;
+    font-size: 0.82rem !important;
+    height: 36px !important;
+  }
+
+  .catalog-sort-select {
+    flex-shrink: 0 !important;
+    max-width: 135px !important;
+    padding: 0.48rem 0.65rem !important;
+    font-size: 0.78rem !important;
+    height: 36px !important;
+  }
+
+  .catalog-subcat-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-top: 0.5rem !important;
+    margin-top: 0.35rem !important;
+  }
+
+  .catalog-subcat-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* 7. Product Detail Page Mobile Architecture */
+@media (max-width: 768px) {
+  .product-detail-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .detail-breadcrumbs-strip {
+    padding: 0.55rem 0 !important;
+  }
+
+  .detail-breadcrumbs-nav {
+    font-size: 0.75rem !important;
+    gap: 0.35rem !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  .detail-breadcrumbs-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .detail-breadcrumb-current {
+    max-width: 140px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .product-stage-frame {
+    height: 290px !important;
+    padding: 1.25rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .stage-badge-tc {
+    top: 0.65rem !important;
+    right: 0.65rem !important;
+    font-size: 0.65rem !important;
+    padding: 0.25rem 0.55rem !important;
+  }
+
+  .stage-trust-ribbon {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem !important;
+    margin-top: 0.65rem !important;
+  }
+
+  .stage-trust-item {
+    padding: 0.45rem 0.2rem !important;
+    border-radius: var(--radius-xs) !important;
+    gap: 0.15rem !important;
+  }
+
+  .stage-trust-label {
+    font-size: 0.62rem !important;
+    line-height: 1.15 !important;
+    word-break: break-word !important;
+  }
+
+  .stage-trust-sub {
+    font-size: 0.55rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .detail-meta-row {
+    gap: 0.4rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .detail-stock-badge {
+    margin-left: 0 !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  .detail-title {
+    font-size: clamp(1.3rem, 5.5vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .detail-description {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .detail-price-banner {
+    padding: 1rem !important;
+    gap: 0.85rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .detail-price-big {
+    font-size: 1.85rem !important;
+  }
+
+  .detail-wholesale-box {
+    text-align: left !important;
+    width: 100% !important;
+    border-top: 1px dashed var(--teal-200) !important;
+    padding-top: 0.65rem !important;
+  }
+
+  .detail-wholesale-rate {
+    font-size: 1.05rem !important;
+  }
+
+  .specs-table {
+    margin-bottom: 1.25rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  .specs-table th {
+    width: 40% !important;
+    padding: 0.55rem 0.65rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  .specs-table td {
+    padding: 0.55rem 0.65rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  .laser-engrave-card {
+    padding: 0.85rem 1rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .laser-engrave-input {
+    padding: 0.55rem 0.75rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  /* Ergonomic mobile stacked controls */
+  .detail-buttons-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+  }
+
+  .qty-stepper {
+    width: 100% !important;
+    justify-content: space-between !important;
+    height: 44px !important;
+  }
+
+  .qty-btn {
+    width: 52px !important;
+    height: 100% !important;
+    font-size: 1.25rem !important;
+  }
+
+  .qty-input {
+    flex: 1 !important;
+    width: auto !important;
+    font-size: 1.05rem !important;
+  }
+
+  .btn-add-cart,
+  .btn-add-quote {
+    width: 100% !important;
+    height: 46px !important;
+    justify-content: center !important;
+    font-size: 0.9rem !important;
+    flex: none !important;
+  }
+
+  .detail-whatsapp-banner {
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 0.82rem !important;
+    padding: 0.75rem 1rem !important;
+    height: auto !important;
+  }
+
+  /* Detail Tabs mobile horizontal scrolling */
+  .detail-tabs-nav {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 0.25rem !important;
+    margin-bottom: 1.25rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+  }
+
+  .detail-tabs-nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .detail-tab-btn {
+    padding: 0.6rem 0.85rem !important;
+    font-size: 0.8rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .detail-tab-panel {
+    padding: 0.5rem 0 !important;
+  }
+
+  .protocol-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .compliance-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+}
+
+/* 8. Quote Page (RFQ) Mobile Hierarchy */
+@media (max-width: 768px) {
+  .quote-item-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    padding: 0.75rem !important;
+    gap: 0.65rem !important;
+  }
+
+  .quote-item-thumb {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+
+  .quote-item-details {
+    flex: 1 1 calc(100% - 62px) !important;
+    min-width: 0 !important;
+  }
+
+  .quote-item-actions {
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding-top: 0.5rem !important;
+    border-top: 1px solid var(--border-light) !important;
+    margin-top: 0.25rem !important;
+  }
+
+  /* RFQ Preview Modal Mobile Sizing */
+  .rfq-preview-backdrop {
+    padding: 0.5rem !important;
+  }
+
+  .rfq-preview-sheet {
+    max-height: 96vh !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .rfq-preview-header-bar {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .rfq-preview-title {
+    font-size: 0.95rem !important;
+    gap: 0.4rem !important;
+  }
+
+  .rfq-preview-content {
+    padding: 0.65rem !important;
+  }
+
+  .rfq-doc-paper {
+    padding: 0.85rem !important;
+    border-radius: var(--radius-xs) !important;
+  }
+
+  .rfq-doc-header-row {
+    flex-direction: column !important;
+    gap: 0.85rem !important;
+    padding-bottom: 0.85rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .rfq-doc-brand-title {
+    font-size: 1.15rem !important;
+  }
+
+  .rfq-doc-parties-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+    padding: 0.85rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .rfq-preview-table th,
+  .rfq-preview-table td {
+    padding: 0.55rem 0.65rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  .rfq-preview-actions-bar {
+    padding: 0.85rem 1rem !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .rfq-preview-actions-bar .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* 9. Checkout Page Mobile Hierarchy */
+@media (max-width: 768px) {
+  .checkout-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .checkout-card {
+    padding: 1.25rem 1rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .checkout-card-title {
+    font-size: 1.05rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.65rem !important;
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .gateway-tabs {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .gateway-tab {
+    padding: 0.65rem 0.4rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  .gateway-tab-badge {
+    font-size: 0.62rem !important;
+  }
+
+  .cart-item-row {
+    padding-bottom: 0.65rem !important;
+    gap: 0.65rem !important;
+  }
+
+  .cart-item-img-thumb {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* 10. Floating Interactive Badges (WhatsApp & Surgilence AI) */
+@media (max-width: 640px) {
+  .ai-agent-wrap {
+    bottom: 18px !important;
+    right: 14px !important;
+  }
+
+  .whatsapp-toggle-wrap {
+    bottom: 74px !important;
+    right: 14px !important;
+  }
+
+  .ai-trigger-btn {
+    height: 44px !important;
+    padding: 0 0.85rem !important;
+    font-size: 0.78rem !important;
+    box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35) !important;
+  }
+
+  .whatsapp-trigger-btn {
+    width: 44px !important;
+    height: 44px !important;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35) !important;
+  }
+
+  .ai-chat-window {
+    width: calc(100vw - 28px) !important;
+    max-width: 100vw !important;
+    right: 14px !important;
+    bottom: 70px !important;
+    height: 480px !important;
+    max-height: calc(100vh - 90px) !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .whatsapp-flyout {
+    width: calc(100vw - 28px) !important;
+    max-width: 100vw !important;
+    right: 14px !important;
+    bottom: 64px !important;
+    border-radius: var(--radius-md) !important;
+  }
+}
+
+/* 11. Footer Resets for Mobile */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 2.75rem 0 1.5rem !important;
+  }
+
+  .footer-main-grid {
+    gap: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .footer-col-title {
+    margin-bottom: 0.85rem !important;
+  }
+
+  .footer-bottom-strip {
+    padding-top: 1.5rem !important;
+    text-align: center !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
 }
 
 /* =====================================================================
