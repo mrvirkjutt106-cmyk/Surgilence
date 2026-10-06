@@ -4,28 +4,37 @@ import { INSTRUMENTS_DATA } from '../data/instruments';
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  // Cart items (for Checkout)
-  const [cartItems, setCartItems] = useState([
-    {
-      ...INSTRUMENTS_DATA[0],
-      quantity: 5,
-      selectedPrice: INSTRUMENTS_DATA[0].bulkPriceUSD
-    },
-    {
-      ...INSTRUMENTS_DATA[7],
-      quantity: 10,
-      selectedPrice: INSTRUMENTS_DATA[7].bulkPriceUSD
+  // Cart items (for Checkout) - Initialized empty per client requirements
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem('surgilence_cart_v2');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
     }
-  ]);
+  });
 
-  // Quote items (for RFQ)
-  const [quoteItems, setQuoteItems] = useState([
-    {
-      ...INSTRUMENTS_DATA[1],
-      quantity: 10,
-      laserNote: "Hospital Surgery Dept"
+  // Quote items (for RFQ) - Initialized empty per client requirements
+  const [quoteItems, setQuoteItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem('surgilence_quote_v2');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
     }
-  ]);
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('surgilence_cart_v2', JSON.stringify(cartItems));
+    } catch {}
+  }, [cartItems]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('surgilence_quote_v2', JSON.stringify(quoteItems));
+    } catch {}
+  }, [quoteItems]);
 
   const [toastMessage, setToastMessage] = useState(null);
 

@@ -283,28 +283,32 @@ export default function CheckoutPage() {
                       onClick={() => setPaymentMethod('stripe')}
                       className={`gateway-tab ${paymentMethod === 'stripe' ? 'active' : ''}`}
                     >
-                      Credit Card (Stripe)
+                      <span>Credit Card</span>
+                      <span className="gateway-tab-badge">Stripe Gateway</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('wire')}
                       className={`gateway-tab ${paymentMethod === 'wire' ? 'active' : ''}`}
                     >
-                      Bank Wire (T/T Swift)
+                      <span>Bank Wire</span>
+                      <span className="gateway-tab-badge">T/T Swift</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('lc')}
                       className={`gateway-tab ${paymentMethod === 'lc' ? 'active' : ''}`}
                     >
-                      Letter of Credit (L/C)
+                      <span>Letter of Credit</span>
+                      <span className="gateway-tab-badge">Irrevocable L/C</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('paypal')}
                       className={`gateway-tab ${paymentMethod === 'paypal' ? 'active' : ''}`}
                     >
-                      PayPal Commerce
+                      <span>PayPal</span>
+                      <span className="gateway-tab-badge">Commerce</span>
                     </button>
                   </div>
 
@@ -411,22 +415,27 @@ export default function CheckoutPage() {
                 </div>
 
                 {cartItems.length === 0 ? (
-                  <div className="text-center py-8">
-                    <p className="text-xs text-slate-500 mb-3">Your cart is empty.</p>
-                    <Link to="/catalog" className="btn btn-secondary btn-sm">
-                      Select Instruments
+                  <div className="cart-empty-card">
+                    <div className="cart-empty-icon">
+                      <IconShieldCheck size={32} />
+                    </div>
+                    <h4 className="font-bold text-sm text-slate-800 mb-1">Your Order Cart is Empty</h4>
+                    <p className="text-xs text-slate-500 mb-4">
+                      Browse our surgical &amp; dental instruments catalog to select items for commercial export checkout.
+                    </p>
+                    <Link to="/catalog" className="btn btn-primary btn-sm">
+                      Browse Instruments Catalog
                     </Link>
                   </div>
                 ) : (
                   <div>
                     <div className="space-y-3 mb-6 max-h-80 overflow-y-auto pr-1">
                       {cartItems.map((item) => (
-                        <div key={item.id} className="flex items-center gap-3 pb-3 border-b border-slate-100">
-                          <div className="w-12 h-12 bg-white border border-slate-200 rounded p-1 shrink-0 flex items-center justify-center">
+                        <div key={item.id} className="cart-item-row">
+                          <div className="cart-item-img-thumb">
                             <img
                               src={item.image}
                               alt={item.name}
-                              className="w-full h-full object-contain"
                               onError={(e) => {
                                 e.currentTarget.onerror = null;
                                 e.currentTarget.src = '/images/item-metzenbaum-scissors.png';
@@ -445,8 +454,10 @@ export default function CheckoutPage() {
                               ${(item.priceUSD * item.quantity).toFixed(2)}
                             </span>
                             <button
+                              type="button"
                               onClick={() => removeFromCart(item.id)}
-                              className="text-[10px] text-red-500 hover:underline"
+                              className="cart-item-remove-btn"
+                              title="Remove item"
                             >
                               Remove
                             </button>
@@ -466,7 +477,7 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex justify-between text-sm font-extrabold text-slate-900 border-t border-slate-200 pt-2">
                         <span>Total (USD):</span>
-                        <span className="text-teal-700 text-base">${grandTotal.toFixed(2)} USD</span>
+                        <span className="text-teal-700 text-base font-sans">${grandTotal.toFixed(2)} USD</span>
                       </div>
                     </div>
                   </div>
