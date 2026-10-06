@@ -1,16 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import {
   IconFacebook,
   IconInstagram,
   IconShieldCheck,
-  IconMail,
   IconPhone,
-  IconMapPin
+  IconMail
 } from './Icons';
 import { COMPANY_INFO } from '../data/instruments';
 
-export default function Footer({ onOpenQuote }) {
+export default function Footer() {
   return (
     <footer className="footer-section">
       <div className="container">
@@ -20,7 +20,7 @@ export default function Footer({ onOpenQuote }) {
             <Logo className="footer-logo mb-3" />
             <p className="footer-brand-desc">
               SURGILENCE (PVT) LTD is a certified manufacturer and exporter of premium handcrafted surgical and dental instruments.
-              Manufactured exclusively from medical-grade German and French stainless steel.
+              Manufactured exclusively from medical-grade German and French stainless steel. Zero electrical medical appliances.
             </p>
 
             <div className="footer-compliance-pills">
@@ -29,84 +29,90 @@ export default function Footer({ onOpenQuote }) {
               <span className="footer-pill">cGMP Compliant</span>
             </div>
 
-            {/* Social Icons */}
+            {/* Social Icons with exact links */}
             <div className="footer-social-row">
               <a
-                href={COMPANY_INFO.social.facebook}
+                href="https://www.facebook.com/Surgilence01"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-icon"
-                aria-label="SURGILENCE on Facebook"
+                aria-label="SURGILENCE on Facebook (@Surgilence01)"
+                title="Facebook: @Surgilence01"
               >
                 <IconFacebook size={18} />
               </a>
 
               <a
-                href={COMPANY_INFO.social.instagram}
+                href="https://www.instagram.com/surgilence_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-icon"
-                aria-label="SURGILENCE on Instagram"
+                aria-label="SURGILENCE on Instagram (@surgilence_)"
+                title="Instagram: @surgilence_"
               >
                 <IconInstagram size={18} />
+              </a>
+
+              <a
+                href="https://wa.me/923091699666"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-icon"
+                aria-label="SURGILENCE on WhatsApp (+92 309 1699666)"
+                title="WhatsApp: +92 309 1699666"
+              >
+                <IconPhone size={18} />
               </a>
             </div>
           </div>
 
           {/* Column 2: Surgical Instruments Links */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Surgical Category</h4>
+            <h4 className="footer-col-title">Surgical Line</h4>
             <ul className="footer-links">
-              <li><a href="#catalog">Metzenbaum &amp; Dissecting Scissors</a></li>
-              <li><a href="#catalog">TC Needle Holders (Gold Rings)</a></li>
-              <li><a href="#catalog">Crile &amp; Mosquito Hemostats</a></li>
-              <li><a href="#catalog">Adson Micro Tissue Forceps</a></li>
-              <li><a href="#catalog">Scalpel Handles No. 3 &amp; 4</a></li>
-              <li><a href="#catalog">Senn-Miller Retractors</a></li>
-              <li><a href="#catalog">Kerrison Bone Rongeurs</a></li>
+              <li><Link to="/products?category=surgical">Metzenbaum Dissecting Scissors</Link></li>
+              <li><Link to="/products?category=surgical">Mayo-Hegar TC Needle Drivers</Link></li>
+              <li><Link to="/products?category=surgical">Crile &amp; Mosquito Hemostats</Link></li>
+              <li><Link to="/products?category=surgical">Adson Delicate Tissue Forceps</Link></li>
+              <li><Link to="/products?category=surgical">Scalpel Handles with Ruler</Link></li>
+              <li><Link to="/products?category=surgical">Senn-Miller 3-Prong Retractors</Link></li>
+              <li><Link to="/products?category=surgical">Kerrison Bone Rongeurs 45°</Link></li>
             </ul>
           </div>
 
           {/* Column 3: Dental Instruments Links */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Dental Category</h4>
+            <h4 className="footer-col-title">Dental Line</h4>
             <ul className="footer-links">
-              <li><a href="#catalog">Molar Extraction Forceps (#18R/#18L)</a></li>
-              <li><a href="#catalog">Universal Mandibular Forceps (#151)</a></li>
-              <li><a href="#catalog">Coupland Bone Elevators</a></li>
-              <li><a href="#catalog">Williams Periodontal Probes</a></li>
-              <li><a href="#catalog">Gracey Subgingival Curettes</a></li>
-              <li><a href="#catalog">Sickle Scalers (H6/H7)</a></li>
-              <li><a href="#catalog">Rhodium Mouth Mirrors</a></li>
-              <li><a href="#catalog">Mathieu Orthodontic Pliers</a></li>
+              <li><Link to="/products?category=dental">Molar Extraction Forceps #18R</Link></li>
+              <li><Link to="/products?category=dental">Universal Extraction Forceps #151</Link></li>
+              <li><Link to="/products?category=dental">Coupland Dental Bone Elevators</Link></li>
+              <li><Link to="/products?category=dental">Williams Periodontal Probes</Link></li>
+              <li><Link to="/products?category=dental">Gracey Subgingival Curettes Set</Link></li>
+              <li><Link to="/products?category=dental">Sickle Scalers (H6/H7)</Link></li>
+              <li><Link to="/products?category=dental">Rhodium Distortion-Free Mirrors</Link></li>
             </ul>
           </div>
 
-          {/* Column 4: Quality & Corporate Inquiries */}
+          {/* Column 4: Quick Navigation & Commercial Links */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Corporate &amp; Inquiries</h4>
+            <h4 className="footer-col-title">Quick Pages</h4>
             <ul className="footer-links">
-              <li><a href="#quality">ISO 13485:2016 Standards</a></li>
-              <li><a href="#manufacturing">OEM Private Labeling</a></li>
-              <li><a href="#quality">Passivation &amp; Metallurgy</a></li>
-              <li><a href="#about">About Surgilence (Pvt) Ltd</a></li>
-              <li><a href="#contact">Contact International Sales</a></li>
-              <li>
-                <button
-                  onClick={onOpenQuote}
-                  className="footer-rfq-link"
-                >
-                  Request Wholesale Quotation
-                </button>
-              </li>
+              <li><Link to="/">Home Page</Link></li>
+              <li><Link to="/products">All Instruments Catalog</Link></li>
+              <li><Link to="/quote">Request Wholesale RFQ</Link></li>
+              <li><Link to="/checkout">Commercial Checkout</Link></li>
+              <li><Link to="/quality">Quality &amp; ISO 13485 Standards</Link></li>
+              <li><Link to="/about">About Surgilence (Pvt) Ltd</Link></li>
+              <li><Link to="/contact">Contact International Sales</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* Regulatory Banner */}
+        {/* Regulatory Statement Strip */}
         <div className="footer-regulatory-strip">
-          <div className="flex items-center gap-2 text-xs text-muted">
-            <IconShieldCheck size={16} className="text-primary flex-shrink-0" />
+          <div className="flex items-center gap-2 text-xs text-slate-400">
+            <IconShieldCheck size={16} className="text-teal-400 flex-shrink-0" />
             <span>
               <strong>Regulatory Statement:</strong> All instruments listed are manual medical devices classified under EU MDR 2017/745 Class I and Class IIa. Surgilence (Pvt) Ltd strictly manufactures manual cold-steel and Tungsten-Carbide instruments; our production does not encompass electronic or powered electro-surgical appliances.
             </span>
@@ -115,11 +121,11 @@ export default function Footer({ onOpenQuote }) {
 
         {/* Bottom Bar */}
         <div className="footer-bottom-bar">
-          <div className="text-xs text-muted">
+          <div className="text-xs text-slate-400">
             © {new Date().getFullYear()} <strong>SURGILENCE (PVT) LTD</strong>. All rights reserved.
           </div>
-          <div className="text-xs text-muted">
-            Designed for Healthcare Professionals, Surgeons &amp; Dental Practitioners Worldwide.
+          <div className="text-xs text-slate-400">
+            Export Desk: +92 309 1699666 | Sialkot, Pakistan | ISO 13485:2016 Certified
           </div>
         </div>
       </div>

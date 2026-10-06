@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import { IconSearch, IconFileText, IconPhone, IconX } from './Icons';
+import { useCart } from '../context/CartContext';
 
-export default function Navbar({ onOpenQuote, quoteCount, onSearchFocus, activeSection }) {
+export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const { cartCount, quoteCount } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,59 +19,93 @@ export default function Navbar({ onOpenQuote, quoteCount, onSearchFocus, activeS
   }, []);
 
   const navLinks = [
-    { label: "Instruments Catalog", href: "#catalog" },
-    { label: "Quality & ISO 13485", href: "#quality" },
-    { label: "Manufacturing", href: "#manufacturing" },
-    { label: "About Surgilence", href: "#about" },
-    { label: "Contact & Inquiries", href: "#contact" }
+    { label: "Home", path: "/" },
+    { label: "Instruments Catalog", path: "/products" },
+    { label: "Quality & ISO 13485", path: "/quality" },
+    { label: "About Us", path: "/about" },
+    { label: "Contact", path: "/contact" }
   ];
+
+  const isActive = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname.startsWith(path);
+  };
 
   return (
     <header className={`navbar-header ${isScrolled ? 'navbar-scrolled' : ''}`}>
+      {/* Top Notification Announcement Bar */}
+      <div className="top-announcement-bar">
+        <div className="container">
+          <div className="announcement-content">
+            <span className="announcement-badge">B2B EXPORT</span>
+            <span className="announcement-text">
+              Direct Manufacturer Pricing in USD • ISO 13485:2016 &amp; CE Certified • Free Sample Kits for Hospital Tenders
+            </span>
+            <a
+              href="https://wa.me/923091699666"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="top-wa-link"
+            >
+              <IconPhone size={13} />
+              <span>WhatsApp: +92 309 1699666</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navbar */}
       <div className="container">
         <div className="navbar-inner">
           {/* Brand Logo */}
-          <a href="#" className="brand-link" aria-label="SURGILENCE (PVT) LTD Home">
+          <Link to="/" className="brand-link" aria-label="SURGILENCE (PVT) LTD Home">
             <Logo className="navbar-logo" />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="desktop-nav" aria-label="Main Navigation">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`nav-link ${activeSection === link.href.slice(1) ? 'active' : ''}`}
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`nav-link ${isActive(link.path) ? 'active' : ''}`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          {/* Actions: Search shortcut, RFQ Basket, Contact */}
+          {/* Actions: Request Quote, Cart / Checkout, Mobile Toggle */}
           <div className="navbar-actions">
-            <button
-              onClick={onSearchFocus}
-              className="btn btn-secondary btn-sm nav-search-btn"
-              title="Quick Search Instruments"
-              aria-label="Search instruments"
+            {/* Request a Quote Page Button */}
+            <Link
+              to="/quote"
+              className={`btn btn-secondary btn-sm nav-quote-btn ${location.pathname === '/quote' ? 'active' : ''}`}
+              title="Request for Quotation Page"
             >
-              <IconSearch size={16} />
-              <span className="search-label-desktop">Search...</span>
-            </button>
-
-            {/* Request Quote Drawer Button */}
-            <button
-              onClick={onOpenQuote}
-              className="btn btn-primary btn-sm quote-trigger-btn"
-              aria-label={`View Request for Quote cart with ${quoteCount} items`}
-            >
-              <IconFileText size={17} />
-              <span>Request Quote</span>
+              <IconFileText size={16} />
+              <span className="nav-btn-text">RFQ Quote</span>
               {quoteCount > 0 && (
                 <span className="quote-badge-counter">{quoteCount}</span>
               )}
-            </button>
+            </Link>
+
+            {/* Checkout / Order Cart Button */}
+            <Link
+              to="/checkout"
+              className="btn btn-primary btn-sm nav-cart-btn"
+              title="Proceed to Checkout"
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              <span className="nav-btn-text">Checkout</span>
+              {cartCount > 0 && (
+                <span className="cart-badge-counter">{cartCount}</span>
+              )}
+            </Link>
 
             {/* Mobile menu toggle */}
             <button
@@ -90,26 +128,43 @@ export default function Navbar({ onOpenQuote, quoteCount, onSearchFocus, activeS
         {mobileMenuOpen && (
           <div className="mobile-dropdown-menu">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <Link
+                key={link.path}
+                to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className="mobile-nav-link"
+                className={`mobile-nav-link ${isActive(link.path) ? 'active' : ''}`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
             <div className="mobile-menu-actions">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenQuote();
-                }}
-                className="btn btn-primary w-full"
+              <Link
+                to="/quote"
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn btn-secondary w-full justify-between"
               >
-                <IconFileText size={18} />
-                <span>Request for Quote ({quoteCount})</span>
-              </button>
+                <div className="flex items-center gap-2">
+                  <IconFileText size={17} />
+                  <span>Request for Quote</span>
+                </div>
+                <span className="quote-badge-counter">{quoteCount}</span>
+              </Link>
+
+              <Link
+                to="/checkout"
+                onClick={() => setMobileMenuOpen(false)}
+                className="btn btn-primary w-full justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
+                  <span>Checkout / Order</span>
+                </div>
+                <span className="cart-badge-counter">{cartCount}</span>
+              </Link>
             </div>
           </div>
         )}
