@@ -184,22 +184,18 @@ export default function QuotePage() {
                     const price = item.quantity >= 10 ? item.bulkPriceUSD : item.priceUSD;
                     const lineTotal = price * item.quantity;
                     return (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-4 p-3.5 bg-slate-50 rounded-lg border border-slate-200"
-                      >
-                        <div className="w-14 h-14 bg-white border border-slate-200 rounded-md p-1 shrink-0 flex items-center justify-center">
+                      <div key={item.id} className="quote-item-row">
+                        <div className="quote-item-thumb">
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="w-full h-full object-contain"
                             onError={(e) => {
                               e.currentTarget.onerror = null;
                               e.currentTarget.src = '/images/item-mayo-hegar-tc.png';
                             }}
                           />
                         </div>
-                        <div className="flex-1 min-w-0">
+                        <div className="quote-item-details">
                           <span className="text-[10px] font-mono text-teal-700 font-bold block">{item.ref}</span>
                           <h4 className="text-xs sm:text-sm font-bold text-slate-900 truncate">{item.name}</h4>
                           <span className="text-[11px] text-slate-500 block">
@@ -211,16 +207,16 @@ export default function QuotePage() {
                             </span>
                           )}
                         </div>
-                        <div className="flex items-center gap-3 shrink-0">
+                        <div className="quote-item-actions">
                           <div className="text-right mr-1">
-                            <span className="text-xs font-bold text-slate-900 block">
+                            <span className="text-xs font-bold text-slate-900 block font-mono">
                               ${lineTotal.toFixed(2)}
                             </span>
                             <span className="text-[10px] text-slate-400">
                               Qty: {item.quantity}
                             </span>
                           </div>
-                          <div className="flex items-center border border-slate-300 rounded overflow-hidden bg-white">
+                          <div className="flex items-center border border-slate-300 rounded overflow-hidden bg-white shrink-0">
                             <button
                               type="button"
                               onClick={() => updateQuoteQty(item.id, Math.max(1, item.quantity - 1))}
