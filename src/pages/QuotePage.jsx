@@ -1,74 +1,66 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { INSTRUMENTS_DATA, COMPANY_INFO } from '../data/instruments';
 import {
   IconFileText,
   IconCheck,
-  IconTrash,
   IconPhone,
-  IconDownload,
-  IconShieldCheck,
-  IconPlus
+  IconTrash,
+  IconDownload
 } from '../components/Icons';
-import { useCart } from '../context/CartContext';
-import { COMPANY_INFO } from '../data/instruments';
 
 export default function QuotePage() {
-  const { quoteItems, updateQuoteQuantity, removeFromQuote, clearQuote } = useCart();
+  const { quoteItems, updateQuoteQty, removeFromQuote, clearQuote, addToQuote } = useCart();
 
-  const [formData, setFormData] = useState({
-    name: '',
-    organization: '',
-    designation: 'Purchasing Manager / Surgeon',
-    country: '',
-    destinationPort: '',
-    email: '',
-    phone: '',
-    urgency: 'Standard Air Express (5-8 days)',
-    notes: ''
-  });
-
+  const [institutionName, setInstitutionName] = useState('');
+  const [contactName, setContactName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [country, setCountry] = useState('United States');
+  const [targetPort, setTargetPort] = useState('');
+  const [tenderNotes, setTenderNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [rfqNumber, setRfqNumber] = useState('');
+  const [generatedRfqId, setGeneratedRfqId] = useState('');
 
-  const totalUnits = quoteItems.reduce((acc, curr) => acc + curr.quantity, 0);
+  const handleAddSampleItems = () => {
+    INSTRUMENTS_DATA.slice(0, 3).forEach((item) => {
+      addToQuote(item, 10, 'Standard Clinic Laser Mark');
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (quoteItems.length === 0) return;
-
-    const generatedId = `RFQ-SL-${Math.floor(100000 + Math.random() * 900000)}`;
-    setRfqNumber(generatedId);
+    const rfqId = `RFQ-SL-${Math.floor(100000 + Math.random() * 900000)}`;
+    setGeneratedRfqId(rfqId);
     setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePrint = () => {
     window.print();
   };
 
-  const buildWhatsAppLink = () => {
-    const itemsSummary = quoteItems
-      .map((item) => `• [${item.ref}] ${item.name} x ${item.quantity} pcs`)
-      .join('%0A');
-
-    const msg = `Hello SURGILENCE (PVT) LTD,%0AI am requesting an official wholesale proforma quotation:%0A%0A${itemsSummary}%0A%0AOrganization: ${encodeURIComponent(formData.organization || 'Medical Group')}%0AContact: ${encodeURIComponent(formData.name || 'Purchasing Desk')}%0ACountry: ${encodeURIComponent(formData.country || 'International')}%0APort/Airport: ${encodeURIComponent(formData.destinationPort || 'Direct Delivery')}%0APlease provide CIF/FOB pricing and lead times.`;
-    return `https://wa.me/923091699666?text=${msg}`;
+  const generateWhatsAppRfq = () => {
+    const lines = quoteItems.map(
+      (item, idx) => `${idx + 1}. ${item.name} (${item.ref}) x ${item.quantity} units`
+    );
+    const text = `*OFFICIAL WHOLESALE RFQ - SURGILENCE (PVT) LTD*%0AInstitution: ${institutionName || 'Clinic/Hospital'}%0AContact: ${contactName}%0ACountry: ${country}%0A%0A*Requested Instruments:*%0A${lines.join('%0A')}%0A%0ATender Notes: ${tenderNotes || 'Standard packaging'}`;
+    return `https://wa.me/923091699666?text=${text}`;
   };
 
   return (
-    <div className="quote-page">
-      {/* Header Banner */}
-      <section className="page-header-strip bg-slate-900 text-white">
+    <div className="quote-page bg-slate-50 min-h-screen">
+      {/* Light Header Strip */}
+      <section className="bg-white border-b border-slate-200 py-10 sm:py-12">
         <div className="container">
-          <div className="page-header-content">
-            <span className="text-teal-400 font-bold text-xs uppercase tracking-wider">
-              B2B COMMERCIAL SERVICES
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold mt-1 text-white">
+          <div className="max-w-3xl">
+            <span className="section-tag">COMMERCIAL PROCURING</span>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">
               Request for Wholesale Quotation (RFQ)
             </h1>
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mt-2">
-              Generate an official proforma quotation for hospital tenders, clinical batch orders, or international distributorships. Direct manufacturer rates in USD.
+            <p className="text-slate-500 text-sm sm:text-base">
+              Build your custom bill of materials for hospital procurement or international distribution. We provide official proforma invoices in USD with volume discounts.
             </p>
           </div>
         </div>
@@ -76,296 +68,220 @@ export default function QuotePage() {
 
       <div className="container py-10 sm:py-14">
         {submitted ? (
-          /* Submission Confirmation Card */
-          <div className="quote-success-panel max-w-3xl mx-auto">
-            <div className="success-badge-icon">
-              <IconCheck size={40} className="text-teal-600" />
+          <div className="bg-white border border-teal-200 rounded-2xl p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-sm">
+            <div className="w-16 h-16 bg-teal-50 border border-teal-200 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-5">
+              <IconCheck size={32} />
             </div>
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-2">
-              Official Quotation Request Registered
+            <span className="text-xs font-mono font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
+              {generatedRfqId}
+            </span>
+            <h2 className="text-2xl font-bold text-slate-900 mt-4 mb-2">
+              Quotation Request Transmitted
             </h2>
-            <p className="text-sm text-slate-600 mb-6">
-              Thank you, <strong>{formData.name || 'Doctor'}</strong>. Your commercial wholesale RFQ has been logged into our export scheduling system.
+            <p className="text-slate-500 text-sm mb-6 max-w-md mx-auto leading-relaxed">
+              Thank you, <strong>{contactName}</strong> ({institutionName}). Our international export desk has received your Bill of Materials and is formulating proforma documentation.
             </p>
-
-            <div className="rfq-meta-card">
-              <div className="flex items-center justify-between border-b border-slate-200 pb-3 mb-3">
-                <span className="text-xs uppercase font-bold text-slate-500">Official Reference ID</span>
-                <span className="text-lg font-mono font-black text-teal-700">{rfqNumber}</span>
-              </div>
-              <div className="grid grid-cols-2 gap-4 text-xs text-slate-600">
-                <div>
-                  <strong>Organization:</strong> {formData.organization}
-                </div>
-                <div>
-                  <strong>Destination:</strong> {formData.country} ({formData.destinationPort || 'Air Express'})
-                </div>
-                <div>
-                  <strong>Total Models:</strong> {quoteItems.length} Instruments
-                </div>
-                <div>
-                  <strong>Total Quantity:</strong> {totalUnits} Units
-                </div>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href={buildWhatsAppLink()}
+                href={generateWhatsAppRfq()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary"
+                className="btn btn-primary w-full sm:w-auto"
               >
-                <IconPhone size={18} />
-                <span>Send to Export Desk on WhatsApp</span>
+                <IconPhone size={16} />
+                <span>Transmit to WhatsApp Desk</span>
               </a>
-
-              <button onClick={handlePrint} className="btn btn-secondary">
-                <IconDownload size={18} />
-                <span>Print / Save Quotation Sheet</span>
-              </button>
-
               <button
-                onClick={() => {
-                  setSubmitted(false);
-                  clearQuote();
-                }}
-                className="btn btn-secondary"
+                onClick={handlePrint}
+                className="btn btn-secondary w-full sm:w-auto"
               >
-                Start New Request
+                <IconDownload size={16} />
+                <span>Print Official RFQ Sheet</span>
               </button>
             </div>
-          </div>
-        ) : quoteItems.length === 0 ? (
-          /* Empty Quote State */
-          <div className="quote-empty-box max-w-xl mx-auto text-center py-16">
-            <div className="empty-cart-icon mx-auto mb-4">
-              <IconFileText size={48} className="text-slate-400" />
-            </div>
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Your Quotation Basket is Empty</h3>
-            <p className="text-sm text-slate-600 mb-6">
-              Select Dental and Surgical instruments from our catalog and click "+ Quote" to compile your official B2B wholesale quotation list.
-            </p>
-            <Link to="/products" className="btn btn-primary">
-              Browse Instruments Catalog
-            </Link>
           </div>
         ) : (
-          /* Active Quote Form & Itemized Review */
-          <div className="quote-main-grid">
-            {/* Left: Itemized Bill of Materials */}
-            <div className="quote-items-col">
-              <div className="quote-items-header flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-slate-900">
-                  Selected Instruments ({quoteItems.length} models, {totalUnits} total units)
-                </h3>
-                <button
-                  onClick={clearQuote}
-                  className="text-xs text-red-600 hover:text-red-700 flex items-center gap-1 font-semibold"
-                >
-                  <IconTrash size={14} />
-                  <span>Clear List</span>
-                </button>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left 7 Cols: Bill of Materials */}
+            <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-xs">
+              <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-6">
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900">Requested Bill of Materials</h2>
+                  <span className="text-xs text-slate-500">
+                    {quoteItems.length} instrument model{quoteItems.length === 1 ? '' : 's'} selected
+                  </span>
+                </div>
+                {quoteItems.length > 0 && (
+                  <button
+                    onClick={clearQuote}
+                    className="text-xs text-red-600 hover:text-red-700 font-semibold"
+                  >
+                    Clear All
+                  </button>
+                )}
               </div>
 
-              <div className="quote-items-stack space-y-3">
-                {quoteItems.map((item) => (
-                  <div key={item.id} className="quote-instrument-row">
-                    <img src={item.image} alt={item.name} className="quote-row-thumb" />
-
-                    <div className="quote-row-info flex-1">
-                      <div className="flex items-center justify-between">
-                        <span className="sku-tag">{item.ref}</span>
+              {quoteItems.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400">
+                    <IconFileText size={24} />
+                  </div>
+                  <h3 className="font-bold text-slate-700 text-base mb-1">Your RFQ list is currently empty</h3>
+                  <p className="text-xs text-slate-500 mb-5 max-w-sm mx-auto">
+                    Browse our catalog to select surgical or dental tools, or click below to populate a standard sample bundle.
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button
+                      onClick={handleAddSampleItems}
+                      className="btn btn-secondary btn-sm"
+                    >
+                      Add Top 3 Hospital Instruments
+                    </button>
+                    <Link to="/catalog" className="btn btn-primary btn-sm">
+                      Browse Catalog
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {quoteItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200"
+                    >
+                      <div className="w-14 h-14 bg-white border border-slate-200 rounded-md p-1 shrink-0 flex items-center justify-center">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[10px] font-mono text-teal-700 font-bold block">{item.ref}</span>
+                        <h4 className="text-xs sm:text-sm font-bold text-slate-900 truncate">{item.name}</h4>
+                        <span className="text-[11px] text-slate-500 block">
+                          Tier Ref: ${item.bulkPriceUSD.toFixed(2)} USD (Wholesale)
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 shrink-0">
+                        <input
+                          type="number"
+                          min="1"
+                          value={item.quantity}
+                          onChange={(e) => updateQuoteQty(item.id, parseInt(e.target.value) || 1)}
+                          className="w-16 p-1 text-xs text-center border border-slate-300 rounded font-bold bg-white"
+                        />
                         <button
                           onClick={() => removeFromQuote(item.id)}
-                          className="text-slate-400 hover:text-red-600"
-                          title="Remove item"
+                          className="text-slate-400 hover:text-red-600 p-1"
+                          aria-label="Remove item"
                         >
-                          <IconTrash size={15} />
+                          <IconTrash size={16} />
                         </button>
                       </div>
-
-                      <h4 className="font-bold text-sm text-slate-900 mt-1">
-                        <Link to={`/product/${item.id}`} className="hover:text-teal-600">
-                          {item.name}
-                        </Link>
-                      </h4>
-                      <p className="text-xs text-slate-500">{item.steelGrade}</p>
-
-                      {item.laserNote && (
-                        <div className="text-xs text-teal-700 bg-teal-50 px-2 py-0.5 rounded mt-1 inline-block">
-                          Laser: "{item.laserNote}"
-                        </div>
-                      )}
-
-                      <div className="quote-row-bottom flex items-center justify-between mt-2">
-                        <div className="text-xs text-slate-600">
-                          Unit Rate: <strong>${item.bulkPriceUSD.toFixed(2)} USD</strong> (Wholesale)
-                        </div>
-
-                        <div className="qty-mini-controls">
-                          <button
-                            onClick={() => updateQuoteQuantity(item.id, Math.max(1, item.quantity - 1))}
-                            className="qty-mini-btn"
-                          >
-                            -
-                          </button>
-                          <span className="qty-mini-val">{item.quantity}</span>
-                          <button
-                            onClick={() => updateQuoteQuantity(item.id, item.quantity + 1)}
-                            className="qty-mini-btn"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4">
-                <Link to="/products" className="btn btn-secondary btn-sm flex items-center gap-2">
-                  <IconPlus size={15} />
-                  <span>Add More Instruments from Catalog</span>
-                </Link>
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Right: Commercial Procurement Form */}
-            <div className="quote-form-col">
-              <div className="quote-form-card">
-                <h3 className="text-lg font-bold text-slate-900 mb-1">Commercial Information</h3>
-                <p className="text-xs text-slate-500 mb-6">
-                  Provide your facility and shipping destination to receive an itemized CIF or FOB proforma quotation.
-                </p>
+            {/* Right 5 Cols: Commercial Buyer Information */}
+            <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-xs">
+              <h2 className="text-lg font-bold text-slate-900 mb-1">Commercial Buyer Credentials</h2>
+              <p className="text-xs text-slate-500 mb-6">
+                Please enter your organization details to generate the official proforma RFQ sheet.
+              </p>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="form-group">
+                  <label className="form-label">Hospital / Clinic / Company Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={institutionName}
+                    onChange={(e) => setInstitutionName(e.target.value)}
+                    placeholder="e.g. St. Michael General Hospital"
+                    className="form-input text-xs"
+                  />
+                </div>
+
+                <div className="form-grid-2">
                   <div className="form-group">
-                    <label className="form-label">Contact Person Name *</label>
+                    <label className="form-label">Contact Person *</label>
                     <input
                       type="text"
                       required
-                      placeholder="Dr. / Director / Procurement Lead"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="form-input"
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                      placeholder="Dr. John Smith"
+                      className="form-input text-xs"
                     />
                   </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="form-group">
-                      <label className="form-label">Hospital / Clinic / Company *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="Organization Name"
-                        value={formData.organization}
-                        onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                        className="form-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Professional Role</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Chief Surgeon, Distributor"
-                        value={formData.designation}
-                        onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
-                        className="form-input"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="form-group">
-                      <label className="form-label">Destination Country *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. United Kingdom, USA, Germany"
-                        value={formData.country}
-                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                        className="form-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">Port of Delivery / City</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. London Heathrow, New York JFK"
-                        value={formData.destinationPort}
-                        onChange={(e) => setFormData({ ...formData, destinationPort: e.target.value })}
-                        className="form-input"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="form-group">
-                      <label className="form-label">Official Business Email *</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="purchasing@hospital.org"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="form-input"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label className="form-label">WhatsApp or Phone *</label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+1 (555) 000-0000"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="form-input"
-                      />
-                    </div>
-                  </div>
-
                   <div className="form-group">
-                    <label className="form-label">Preferred Logistics Speed</label>
-                    <select
-                      value={formData.urgency}
-                      onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
-                      className="form-select"
-                    >
-                      <option>Standard Air Express (DHL/FedEx, 5-8 business days)</option>
-                      <option>Consolidated Air Cargo (8-12 business days)</option>
-                      <option>Ocean Sea Cargo (For pallets &gt; 500 kg)</option>
-                      <option>Urgent Hospital Evaluation Samples (3-5 days)</option>
-                    </select>
+                    <label className="form-label">Work Email *</label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="procurement@hospital.org"
+                      className="form-input text-xs"
+                    />
                   </div>
+                </div>
 
+                <div className="form-grid-2">
                   <div className="form-group">
-                    <label className="form-label">Special Packaging / Custom Laser Marking Instructions</label>
-                    <textarea
-                      rows="3"
-                      placeholder="Specify custom laser engraving, sterile pouch requirements, or CE certificate requests..."
-                      value={formData.notes}
-                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="form-textarea"
-                    ></textarea>
+                    <label className="form-label">Phone / WhatsApp *</label>
+                    <input
+                      type="tel"
+                      required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+1 (555) 000-0000"
+                      className="form-input text-xs"
+                    />
                   </div>
-
-                  <button type="submit" className="btn btn-primary w-full py-3">
-                    <IconFileText size={18} />
-                    <span>Generate Official Wholesale RFQ Sheet ({totalUnits} Units)</span>
-                  </button>
-
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mt-2">
-                    <IconShieldCheck size={15} className="text-teal-600 flex-shrink-0" />
-                    <span>Your quotation data is handled in strict confidentiality per ISO 13485 protocols.</span>
+                  <div className="form-group">
+                    <label className="form-label">Destination Country *</label>
+                    <input
+                      type="text"
+                      required
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      placeholder="Country"
+                      className="form-input text-xs"
+                    />
                   </div>
-                </form>
-              </div>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Target Delivery Port / Airport</label>
+                  <input
+                    type="text"
+                    value={targetPort}
+                    onChange={(e) => setTargetPort(e.target.value)}
+                    placeholder="e.g. Frankfurt FRA / New York JFK"
+                    className="form-input text-xs"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Tender Notes &amp; Packaging Requirements</label>
+                  <textarea
+                    rows={3}
+                    value={tenderNotes}
+                    onChange={(e) => setTenderNotes(e.target.value)}
+                    placeholder="Custom laser marking, pouch specifications, or regulatory documents..."
+                    className="form-textarea text-xs"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={quoteItems.length === 0}
+                  className="btn btn-primary w-full justify-center mt-2 disabled:opacity-50"
+                >
+                  <IconFileText size={16} />
+                  <span>Generate Formal Quotation Sheet</span>
+                </button>
+              </form>
             </div>
           </div>
         )}

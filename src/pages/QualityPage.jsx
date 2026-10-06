@@ -4,142 +4,100 @@ import {
   IconShieldCheck,
   IconAward,
   IconCheck,
-  IconFileText,
-  IconDownload
+  IconScissors
 } from '../components/Icons';
-import { COMPANY_INFO } from '../data/instruments';
 
 export default function QualityPage() {
-  const steps = [
-    {
-      num: "01",
-      title: "Raw Alloy Spectrometry",
-      desc: "Every billet of German & French stainless steel is analyzed via optical emission spectrometry to verify exact carbon, chromium, and molybdenum percentages before forging."
-    },
-    {
-      num: "02",
-      title: "Controlled Vacuum Heat Treatment",
-      desc: "Computerized vacuum furnaces treat instruments to exact Rockwell hardness thresholds (HRC 50-54 for cutting edges, HRC 68-70 for Tungsten Carbide inserts) eliminating brittleness."
-    },
-    {
-      num: "03",
-      title: "ASTM A967 Chemical Passivation",
-      desc: "Instruments undergo multi-stage nitric/citric acid baths that dissolve free surface iron and generate an impenetrable chromium oxide passive layer, preventing rust in autoclaves."
-    },
-    {
-      num: "04",
-      title: "2-Hour Boil & Corrosion Testing",
-      desc: "Random sample lots undergo a 2-hour boiling water test and copper sulfate surface reaction test to guarantee zero pitting or discoloration under hospital sterilization cycles."
-    }
-  ];
-
   return (
-    <div className="quality-page">
-      {/* Banner */}
-      <section className="page-header-strip bg-slate-900 text-white">
+    <div className="quality-page bg-white">
+      {/* Light Header Strip */}
+      <section className="bg-slate-50 border-b border-slate-200 py-12 sm:py-16">
         <div className="container">
-          <div className="page-header-content">
-            <span className="text-teal-400 font-bold text-xs uppercase tracking-wider">
-              METALLURGICAL STANDARDS
-            </span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold mt-1 text-white">
+          <div className="max-w-3xl">
+            <span className="section-tag">COMPLIANCE &amp; ACCREDITATION</span>
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-3">
               Quality Assurance &amp; ISO 13485:2016
             </h1>
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mt-2">
-              Every instrument manufactured by SURGILENCE (PVT) LTD is governed by strict medical device quality management systems and international clinical safety regulations.
+            <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
+              SURGILENCE (PVT) LTD operates under an audited Medical Device Quality Management System conforming to international standards for precision surgical and dental instruments.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-12 sm:py-16">
-        {/* Quality Certifications Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {COMPANY_INFO.certifications.map((cert, index) => (
-            <div key={index} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-              <div className="flex items-center gap-2 mb-2">
-                <IconShieldCheck size={20} className="text-teal-600" />
-                <h3 className="text-base font-bold text-slate-900">{cert.code}</h3>
-              </div>
-              <h4 className="text-xs font-bold text-teal-700 uppercase tracking-wider mb-2">
-                {cert.title}
-              </h4>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                {cert.body}
-              </p>
+        {/* Core Pillars */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 text-teal-600 flex items-center justify-center mb-4">
+              <IconShieldCheck size={26} />
             </div>
-          ))}
-        </div>
-
-        {/* 4-Stage Testing Process */}
-        <div className="mb-16">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs uppercase font-bold text-teal-700 tracking-wider">VERIFICATION WORKFLOW</span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
-              4-Stage Quality Assurance Verification
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              From raw German billet inspection to sterile operating room delivery.
+            <h3 className="text-lg font-bold text-slate-900 mb-2">ISO 13485:2016 Certified</h3>
+            <p className="text-sm text-slate-500 leading-relaxed">
+              Certified medical device quality management standard governing manufacturing consistency, traceability from raw billets to finished instruments, and post-market surveillance.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((step) => (
-              <div key={step.num} className="bg-slate-50 border border-slate-200 rounded-xl p-6 relative">
-                <span className="text-3xl font-extrabold text-teal-200 block mb-2">{step.num}</span>
-                <h4 className="font-bold text-sm text-slate-900 mb-2">{step.title}</h4>
-                <p className="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 text-teal-600 flex items-center justify-center mb-4">
+              <IconAward size={26} />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">CE MDR 2017/745 Compliant</h3>
+            <p className="text-sm text-slate-500 leading-relaxed">
+              Conforms with European Medical Device Regulations for Class I reusable surgical and dental hand tools, supporting institutional hospital procurement across the EU.
+            </p>
+          </div>
+
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 text-teal-600 flex items-center justify-center mb-4">
+              <IconScissors size={26} />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">ASTM A967 Chemical Passivation</h3>
+            <p className="text-sm text-slate-500 leading-relaxed">
+              All instruments undergo nitric/citric chemical passivation to remove free iron molecules from the surface, building a durable chromium-oxide passive shield against rust.
+            </p>
           </div>
         </div>
 
         {/* Metallurgy Matrix */}
-        <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 mb-12">
-          <h3 className="text-lg font-bold text-slate-900 mb-4">
-            Alloy Specifications &amp; Mechanical Properties
-          </h3>
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-10 mb-16">
+          <h2 className="text-xl font-bold text-slate-900 mb-2">Metallurgy &amp; Hardness Verification</h2>
+          <p className="text-sm text-slate-500 mb-6 max-w-2xl">
+            We use authenticated metallurgical billets conforming to ASTM F899 standards for surgical instruments.
+          </p>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-100 text-slate-700 border-b border-slate-200">
-                  <th className="p-3">Steel Classification</th>
-                  <th className="p-3">Standard Reference</th>
-                  <th className="p-3">Rockwell Hardness</th>
-                  <th className="p-3">Clinical Application</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                <tr>
-                  <td className="p-3 font-bold text-slate-900">AISI 420 Martensitic</td>
-                  <td className="p-3 text-slate-600">ASTM F899 / ISO 7153-1</td>
-                  <td className="p-3 font-semibold text-teal-700">HRC 52 – 54</td>
-                  <td className="p-3 text-slate-600">Scissors cutting edges, bone elevators, rongeurs</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-bold text-slate-900">AISI 410 Surgical Steel</td>
-                  <td className="p-3 text-slate-600">ASTM F899</td>
-                  <td className="p-3 font-semibold text-teal-700">HRC 48 – 50</td>
-                  <td className="p-3 text-slate-600">Forceps shanks, needle driver bodies, retractors</td>
-                </tr>
-                <tr>
-                  <td className="p-3 font-bold text-slate-900">Tungsten Carbide (TC)</td>
-                  <td className="p-3 text-slate-600">Vacuum Silver Brazed</td>
-                  <td className="p-3 font-semibold text-amber-600">HRC 68 – 70</td>
-                  <td className="p-3 text-slate-600">Needle holder jaw inserts, micro ligature pliers</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="bg-white p-5 rounded-xl border border-slate-200">
+              <span className="text-xs font-mono font-bold text-teal-700 block mb-1">AISI 420 Martensitic</span>
+              <h4 className="font-bold text-base text-slate-900 mb-1">HRC 52 – 54 Hardness</h4>
+              <p className="text-xs text-slate-500">
+                Used in cutting scissors, elevators, and bone punches. Delivers razor edge retention with zero brittleness.
+              </p>
+            </div>
+
+            <div className="bg-white p-5 rounded-xl border border-slate-200">
+              <span className="text-xs font-mono font-bold text-teal-700 block mb-1">AISI 410 Ferritic/Martensitic</span>
+              <h4 className="font-bold text-base text-slate-900 mb-1">HRC 48 – 50 Hardness</h4>
+              <p className="text-xs text-slate-500">
+                Optimized for tissue forceps, hemostats, and retractors requiring flex ductility without permanent deformation.
+              </p>
+            </div>
+
+            <div className="bg-white p-5 rounded-xl border border-slate-200">
+              <span className="text-xs font-mono font-bold text-amber-700 block mb-1">Tungsten Carbide (TC Gold)</span>
+              <h4 className="font-bold text-base text-slate-900 mb-1">HRA 88 – 90 Hardness</h4>
+              <p className="text-xs text-slate-500">
+                Vacuum-brazed sintered carbide inserts with 0.4mm pyramid serrations for slip-free needle driving.
+              </p>
+            </div>
           </div>
         </div>
 
+        {/* CTA */}
         <div className="text-center">
-          <Link to="/quote" className="btn btn-primary mr-3">
-            <span>Request Certified Lot Quotation</span>
-          </Link>
-          <Link to="/products" className="btn btn-secondary">
-            <span>View Instruments Catalog</span>
+          <Link to="/quote" className="btn btn-primary">
+            <span>Request Certificate of Conformance / RFQ</span>
+            <span>→</span>
           </Link>
         </div>
       </div>

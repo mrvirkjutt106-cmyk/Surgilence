@@ -5,352 +5,349 @@ import {
   IconTooth,
   IconShieldCheck,
   IconAward,
-  IconCheck,
   IconFileText,
   IconGlobe,
-  IconPhone
+  IconCheck
 } from '../components/Icons';
-import { INSTRUMENTS_DATA, COMPANY_INFO } from '../data/instruments';
+import { INSTRUMENTS_DATA } from '../data/instruments';
 import { useCart } from '../context/CartContext';
 
 export default function HomePage() {
-  const { addToCart, addToQuote } = useCart();
+  const { addToCart } = useCart();
 
-  // Featured 4 surgical + 4 dental items
-  const featuredSurgical = INSTRUMENTS_DATA.filter((i) => i.category === 'surgical').slice(0, 4);
-  const featuredDental = INSTRUMENTS_DATA.filter((i) => i.category === 'dental').slice(0, 4);
+  // Top 8 bestselling items across surgical & dental
+  const featuredItems = INSTRUMENTS_DATA.slice(0, 8);
 
   return (
     <div className="home-page">
       {/* Hero Section */}
       <section className="home-hero-section">
         <div className="container">
-          <div className="home-hero-grid">
+          <div className="hero-main-grid">
             <div className="hero-text-col">
               <div className="hero-trust-tag">
-                <IconShieldCheck size={16} className="text-primary" />
+                <IconShieldCheck size={16} className="text-teal-600" />
                 <span>ISO 13485:2016 Certified &amp; CE MDR Compliant</span>
               </div>
 
-              <h1 className="hero-main-title">
+              <h1 className="hero-headline">
                 Precision Surgical &amp; <br />
-                <span className="text-primary-gradient">Dental Instruments</span> <br />
+                <span className="hero-headline-gradient">Dental Instruments</span> <br />
                 Direct From Manufacturer.
               </h1>
 
               <p className="hero-lead-text">
-                <strong className="text-slate-900">SURGILENCE (PVT) LTD</strong> crafts high-performance manual instruments exclusively from genuine German &amp; French stainless steel (AISI 420 / 410) and Tungsten Carbide. Serving surgeons, dental clinicians, and international distributors with verified factory-direct USD pricing.
+                <strong>SURGILENCE (PVT) LTD</strong> crafts high-performance manual instruments exclusively from genuine German stainless steel (AISI 420 / 410) and Tungsten Carbide. Supplying operating theaters, dental practices, and healthcare distributors worldwide with verified factory-direct USD pricing.
               </p>
 
               <div className="hero-cta-group">
-                <Link to="/products" className="btn btn-primary">
+                <Link to="/catalog" className="btn btn-primary">
                   <span>Explore Instruments Catalog</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </Link>
 
                 <Link to="/quote" className="btn btn-secondary">
-                  <IconFileText size={18} />
+                  <IconFileText size={17} />
                   <span>Request Wholesale RFQ</span>
                 </Link>
               </div>
 
               {/* Verified Metrics Strip */}
-              <div className="hero-metrics-strip">
-                <div className="metric-box">
-                  <span className="metric-num">100%</span>
-                  <span className="metric-text">Manual Instruments (No Electronic Appliances)</span>
+              <div className="hero-metrics-grid">
+                <div className="metric-pill-card">
+                  <span className="metric-pill-val">40+</span>
+                  <span className="metric-pill-lbl">Countries Exported</span>
                 </div>
-                <div className="metric-sep"></div>
-                <div className="metric-box">
-                  <span className="metric-num">AISI 420</span>
-                  <span className="metric-text">German Stainless Steel Standard</span>
+                <div className="metric-pill-card">
+                  <span className="metric-pill-val">AISI 420</span>
+                  <span className="metric-pill-lbl">German Steel Standard</span>
                 </div>
-                <div className="metric-sep"></div>
-                <div className="metric-box">
-                  <span className="metric-num">134°C</span>
-                  <span className="metric-text">Autoclave Passivation Proof</span>
+                <div className="metric-pill-card">
+                  <span className="metric-pill-val">134°C</span>
+                  <span className="metric-pill-lbl">Steam Autoclavable</span>
+                </div>
+                <div className="metric-pill-card">
+                  <span className="metric-pill-val">USD</span>
+                  <span className="metric-pill-lbl">Factory Direct Pricing</span>
                 </div>
               </div>
             </div>
 
             {/* Hero Visual Card */}
-            <div className="hero-visual-col">
-              <div className="hero-card-frame">
-                <img
-                  src="/images/hero-instruments.jpg"
-                  alt="Precision Surgical Instruments by SURGILENCE (PVT) LTD"
-                  className="hero-card-img"
-                  loading="eager"
-                />
-                <div className="hero-badge-overlay top-badge">
-                  <span className="live-dot"></span>
-                  <span className="text-xs font-bold text-slate-800">ASTM A967 Passivated</span>
-                </div>
-                <div className="hero-badge-overlay bottom-badge">
-                  <IconAward size={16} className="text-amber-500" />
-                  <span className="text-xs font-bold text-slate-800">Tungsten Carbide Gold Line</span>
-                </div>
+            <div className="hero-visual-frame">
+              <img
+                src="/images/hero-instruments.jpg"
+                alt="Precision Surgical Instruments by Surgilence"
+                className="hero-visual-img"
+                loading="eager"
+              />
+              <div className="hero-floating-badge badge-top">
+                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                <span>ASTM A967 Passivated</span>
               </div>
-
-              {/* Department Split Navigation */}
-              <div className="dept-quick-nav">
-                <Link to="/products?category=surgical" className="dept-card">
-                  <div className="dept-icon-box">
-                    <IconScissors size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="dept-name">Surgical Specialty</h4>
-                    <p className="dept-detail">Metzenbaum, Scissors, Needle Holders, Retractors</p>
-                  </div>
-                </Link>
-
-                <Link to="/products?category=dental" className="dept-card">
-                  <div className="dept-icon-box">
-                    <IconTooth size={20} className="text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="dept-name">Dental Specialty</h4>
-                    <p className="dept-detail">Extraction Forceps, Elevators, Scalers, Mirrors</p>
-                  </div>
-                </Link>
+              <div className="hero-floating-badge badge-bottom">
+                <IconAward size={15} className="text-amber-500" />
+                <span>Tungsten Carbide Gold Line</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Surgical Instruments Section */}
-      <section className="featured-section bg-slate-50">
+      {/* Visual Category Showcase */}
+      <section className="section-py bg-white">
         <div className="container">
-          <div className="section-title-wrap">
-            <div className="section-sub-tag">
-              <IconScissors size={15} />
-              <span>General &amp; Specialized Surgery</span>
-            </div>
-            <h2 className="section-main-heading">Featured Surgical Hand Instruments</h2>
-            <p className="section-sub-desc">
-              Every instrument is individually heat-treated, passivated, and micro-honed for effortless tissue handling.
+          <div className="section-header-center">
+            <span className="section-tag">SPECIALIZED PORTFOLIO</span>
+            <h2 className="section-title">Engineered by Clinical Department</h2>
+            <p className="section-desc">
+              Every instrument is cold-forged and precision-hand-finished to deliver exact tactile balance, cutting performance, and long-term corrosion resistance.
             </p>
           </div>
 
-          <div className="product-cards-grid">
-            {featuredSurgical.map((item) => (
-              <ProductCardItem
-                key={item.id}
-                item={item}
-                onAddToCart={addToCart}
-                onAddToQuote={addToQuote}
-              />
-            ))}
-          </div>
+          <div className="categories-grid">
+            {/* General Surgery */}
+            <Link to="/catalog?category=surgical" className="category-card">
+              <div>
+                <div className="category-icon-bubble">
+                  <IconScissors size={24} />
+                </div>
+                <h3 className="category-name">General Surgery</h3>
+                <p className="category-desc">
+                  Metzenbaum scissors, Crile hemostats, Adson tissue forceps, Senn retractors, and scalpel handles.
+                </p>
+              </div>
+              <span className="category-cta-link">
+                <span>View Surgical Line</span>
+                <span>→</span>
+              </span>
+            </Link>
 
-          <div className="text-center mt-8">
-            <Link to="/products?category=surgical" className="btn btn-secondary">
-              <span>View All Surgical Instruments ({INSTRUMENTS_DATA.filter(i => i.category === 'surgical').length})</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+            {/* Dental Extraction */}
+            <Link to="/catalog?category=dental" className="category-card">
+              <div>
+                <div className="category-icon-bubble">
+                  <IconTooth size={24} />
+                </div>
+                <h3 className="category-name">Oral &amp; Extraction</h3>
+                <p className="category-desc">
+                  Anatomically contoured extraction forceps (#18R, #151), Coupland elevators, and bone rongeurs.
+                </p>
+              </div>
+              <span className="category-cta-link">
+                <span>View Extraction Tools</span>
+                <span>→</span>
+              </span>
+            </Link>
+
+            {/* Periodontics & Diagnostics */}
+            <Link to="/catalog?category=dental" className="category-card">
+              <div>
+                <div className="category-icon-bubble">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+                <h3 className="category-name">Periodontics &amp; Diagnostics</h3>
+                <p className="category-desc">
+                  Sickle scalers (H6/H7), Williams millimeter probes, and rhodium front-surface mouth mirrors.
+                </p>
+              </div>
+              <span className="category-cta-link">
+                <span>View Diagnostic Line</span>
+                <span>→</span>
+              </span>
+            </Link>
+
+            {/* Tungsten Carbide Gold */}
+            <Link to="/catalog?category=surgical" className="category-card">
+              <div>
+                <div className="category-icon-bubble" style={{ color: '#d97706', background: '#fffbeb', borderColor: '#fef3c7' }}>
+                  <IconAward size={24} />
+                </div>
+                <h3 className="category-name">TC Gold Needle Drivers</h3>
+                <p className="category-desc">
+                  Mayo-Hegar and Mathieu pliers brazed with Tungsten Carbide jaws for non-slip needle grip.
+                </p>
+              </div>
+              <span className="category-cta-link" style={{ color: '#b45309' }}>
+                <span>View TC Gold Line</span>
+                <span>→</span>
+              </span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Featured Dental Instruments Section */}
-      <section className="featured-section">
+      {/* Featured Instruments Product Grid */}
+      <section className="section-py bg-slate-50">
         <div className="container">
-          <div className="section-title-wrap">
-            <div className="section-sub-tag">
-              <IconTooth size={15} />
-              <span>Exodontia &amp; Periodontics</span>
-            </div>
-            <h2 className="section-main-heading">Featured Dental Clinical Instruments</h2>
-            <p className="section-sub-desc">
-              Anatomical extraction forceps, delicate luxators, and subgingival scalers engineered for superior dental tactile ergonomics.
+          <div className="section-header-center">
+            <span className="section-tag">POPULAR EXPORTS</span>
+            <h2 className="section-title">Featured Manual Instruments</h2>
+            <p className="section-desc">
+              All items available in individual sample units or palletized wholesale container quantities with direct factory USD pricing.
             </p>
           </div>
 
-          <div className="product-cards-grid">
-            {featuredDental.map((item) => (
-              <ProductCardItem
-                key={item.id}
-                item={item}
-                onAddToCart={addToCart}
-                onAddToQuote={addToQuote}
-              />
-            ))}
+          <div className="products-grid">
+            {featuredItems.map((item) => {
+              const isTC = item.steelGrade.toLowerCase().includes('tungsten carbide') || item.finish.includes('Gold');
+              return (
+                <div key={item.id} className="product-card">
+                  {/* 1:1 Square Frame on Pure White Canvas */}
+                  <Link to={`/product/${item.id}`} className="product-card-img-wrap">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="product-card-img"
+                      loading="lazy"
+                    />
+                    <div className="product-tag-overlay">
+                      <span className={`product-badge ${isTC ? 'product-badge-tc' : item.category === 'surgical' ? 'product-badge-surgical' : 'product-badge-dental'}`}>
+                        {isTC ? 'TC GOLD' : item.category}
+                      </span>
+                    </div>
+                  </Link>
+
+                  {/* Info */}
+                  <div className="product-card-body">
+                    <span className="product-card-ref">{item.ref}</span>
+                    <h3 className="product-card-title">
+                      <Link to={`/product/${item.id}`} className="hover:text-teal-700">
+                        {item.name}
+                      </Link>
+                    </h3>
+
+                    <div className="product-specs-pills">
+                      <span className="spec-pill">{item.length}</span>
+                      <span className="spec-pill">{item.steelGrade.split(' ')[0]} {item.steelGrade.split(' ')[1] || ''}</span>
+                    </div>
+
+                    <div className="product-card-pricing">
+                      <div className="price-main-wrap">
+                        <span className="price-main-val">${item.priceUSD.toFixed(2)}</span>
+                        <span className="price-bulk-tag">Bulk: ${item.bulkPriceUSD.toFixed(2)} / 10+ pcs</span>
+                      </div>
+                    </div>
+
+                    <div className="product-card-actions">
+                      <Link to={`/product/${item.id}`} className="btn btn-secondary btn-sm">
+                        Details
+                      </Link>
+                      <button
+                        onClick={() => addToCart(item, 1)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="text-center mt-8">
-            <Link to="/products?category=dental" className="btn btn-secondary">
-              <span>View All Dental Instruments ({INSTRUMENTS_DATA.filter(i => i.category === 'dental').length})</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+          <div className="text-center mt-12">
+            <Link to="/catalog" className="btn btn-primary">
+              <span>View All Instruments ({INSTRUMENTS_DATA.length} Models)</span>
+              <span>→</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Metallurgical Quality Showcase Banner */}
-      <section className="quality-highlight-banner bg-slate-900 text-white">
+      {/* Visual Quality Assurance Pillars */}
+      <section className="section-py bg-white">
         <div className="container">
-          <div className="quality-banner-grid">
-            <div>
-              <span className="quality-pill-gold">ISO 13485:2016 QUALITY SYSTEMS</span>
-              <h2 className="text-3xl font-bold mt-3 mb-4 text-white">
-                Zero Compromise On Cold-Steel Metallurgy
+          <div className="section-header-center">
+            <span className="section-tag">QUALITY GUARANTEE</span>
+            <h2 className="section-title">The Surgilence Manufacturing Standard</h2>
+            <p className="section-desc">
+              Every instrument passes our multi-stage inspection for dimensional fidelity, Rockwell hardness, and chemical passivation before export.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 mb-4">
+                <IconShieldCheck size={24} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">ISO 13485:2016 &amp; CE</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Full international regulatory compliance for hospital tenders and clinical deployment across the EU, US, and Middle East.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 mb-4">
+                <IconScissors size={24} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">Vacuum Hardened Steel</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Precision martensitic AISI 420 alloys treated to Rockwell HRC 52-54 for durable blade edges and lasting spring tension.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 mb-4">
+                <IconAward size={24} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">Custom Laser Etching</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Permanent 50-micron fiber-laser marking of clinic names, department inventory codes, or distributor branding.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 mb-4">
+                <IconGlobe size={24} />
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">Worldwide DHL Logistics</h3>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Fast door-to-door express delivery for samples, plus scheduled air freight and sea containers for bulk tenders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Commercial Inquiry CTA Card */}
+      <section className="section-py bg-slate-50">
+        <div className="container">
+          <div className="bg-gradient-to-r from-teal-50 to-sky-50 border border-teal-200 rounded-2xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-xl">
+              <span className="text-xs font-bold text-teal-700 uppercase tracking-wider block mb-2">
+                HOSPITAL TENDERS &amp; DISTRIBUTORS
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
+                Need a Custom Proforma Invoice or Sample Kit?
               </h2>
-              <p className="text-slate-300 text-base leading-relaxed mb-6">
-                Unlike mass-market medical electronics, manual surgery is an art of physical touch. We forge our instruments strictly from certified German AISI 420 and 410 stainless steel, vacuum heat-treat to exact Rockwell thresholds, and subject each lot to a 2-hour autoclave boil test.
-              </p>
-              <div className="quality-checks-list">
-                <div className="flex items-center gap-2 text-sm text-slate-200">
-                  <IconCheck size={16} className="text-teal-400" />
-                  <span>ASTM A967 Chemical Acid Passivation</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-200">
-                  <IconCheck size={16} className="text-teal-400" />
-                  <span>Tungsten Carbide Gold-Brazed Jaws (HRC 68-70)</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-slate-200">
-                  <IconCheck size={16} className="text-teal-400" />
-                  <span>Custom Fiber-Laser Hospital Branding</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="quality-stat-cards-cluster">
-              <div className="quality-stat-box">
-                <span className="stat-big-val">850K+</span>
-                <span className="stat-sub-text">Instruments Exported Annually</span>
-              </div>
-              <div className="quality-stat-box">
-                <span className="stat-big-val">48+</span>
-                <span className="stat-sub-text">Countries Supplied</span>
-              </div>
-              <div className="quality-stat-box">
-                <span className="stat-big-val">100%</span>
-                <span className="stat-sub-text">Autoclave Guaranteed</span>
-              </div>
-              <div className="quality-stat-box">
-                <span className="stat-big-val">0%</span>
-                <span className="stat-sub-text">Electrical Appliances (Pure Steel)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Wholesale RFQ CTA Section */}
-      <section className="rfq-cta-section">
-        <div className="container">
-          <div className="rfq-banner-card">
-            <div className="rfq-banner-content">
-              <span className="text-xs uppercase font-bold tracking-wider text-teal-600">DIRECT FACTORY PROCUREMENT</span>
-              <h3 className="text-2xl font-bold text-slate-900 mt-1 mb-2">
-                Need an Itemized Proforma Invoice or Hospital Tender Quote?
-              </h3>
-              <p className="text-slate-600 text-sm max-w-2xl">
-                Submit your Bill of Materials or choose instruments from our catalog. Our export sales department delivers official quotation sheets with estimated air freight lead times within 12 hours.
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Our export desk prepares comprehensive quotes with tier discounts, freight options, and delivery timelines within 2 hours.
               </p>
             </div>
-            <div className="rfq-banner-actions">
-              <Link to="/quote" className="btn btn-primary">
-                <IconFileText size={18} />
-                <span>Create Wholesale RFQ</span>
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+              <Link to="/quote" className="btn btn-primary w-full sm:w-auto">
+                Build Wholesale RFQ
               </Link>
               <a
-                href={`https://wa.me/923091699666?text=${encodeURIComponent("Hello SURGILENCE (PVT) LTD, I am requesting wholesale pricing for surgical & dental instruments.")}`}
+                href="https://wa.me/923091699666"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-secondary"
+                className="btn btn-secondary w-full sm:w-auto"
               >
-                <IconPhone size={18} />
-                <span>WhatsApp Desk</span>
+                Instant WhatsApp Inquiry
               </a>
             </div>
           </div>
         </div>
       </section>
     </div>
-  );
-}
-
-// Sub-component for rendering product cards
-function ProductCardItem({ item, onAddToCart, onAddToQuote }) {
-  const isTC = item.steelGrade.toLowerCase().includes('tungsten carbide') || item.finish.includes('Gold');
-
-  return (
-    <article className="product-item-card">
-      {/* Top Bar with SKU & Category */}
-      <div className="product-item-top">
-        <span className="item-sku-badge">{item.ref}</span>
-        <span className={`item-cat-badge ${item.category === 'surgical' ? 'cat-surgical' : 'cat-dental'}`}>
-          {item.category === 'surgical' ? 'Surgical' : 'Dental'}
-        </span>
-      </div>
-
-      {/* Product Image Stage (Dedicated unique image per item!) */}
-      <Link to={`/product/${item.id}`} className="product-image-container">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="product-main-photo"
-          loading="lazy"
-        />
-        {isTC && (
-          <span className="gold-ribbon-tag">
-            <IconAward size={13} />
-            <span>TC Gold</span>
-          </span>
-        )}
-      </Link>
-
-      {/* Product Content Details */}
-      <div className="product-content-wrap">
-        <span className="product-subcat-label">{item.subcategory}</span>
-        <h3 className="product-item-heading">
-          <Link to={`/product/${item.id}`}>{item.name}</Link>
-        </h3>
-        <p className="product-specialty-txt">{item.specialty}</p>
-
-        {/* Pricing Block in USD */}
-        <div className="product-price-block">
-          <div className="price-primary-row">
-            <span className="price-usd-val">${item.priceUSD.toFixed(2)}</span>
-            <span className="price-unit">USD / unit</span>
-          </div>
-          <div className="price-bulk-tag">
-            Bulk (10+): <strong>${item.bulkPriceUSD.toFixed(2)} USD</strong>
-          </div>
-        </div>
-
-        {/* Card Action Buttons */}
-        <div className="product-card-btn-row">
-          <Link to={`/product/${item.id}`} className="btn btn-secondary btn-sm flex-1">
-            <span>View Details</span>
-          </Link>
-
-          <button
-            onClick={() => onAddToCart(item, 1)}
-            className="btn btn-primary btn-sm flex-1"
-            title="Add to checkout order cart"
-          >
-            <span>+ Cart</span>
-          </button>
-
-          <button
-            onClick={() => onAddToQuote(item, 1)}
-            className="btn btn-secondary btn-sm"
-            title="Add to wholesale RFQ quote"
-          >
-            <IconFileText size={15} />
-          </button>
-        </div>
-      </div>
-    </article>
   );
 }
