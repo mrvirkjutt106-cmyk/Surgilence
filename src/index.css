@@ -936,25 +936,21 @@ button, input, select, textarea {
    ===================================================================== */
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.75rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
 }
 
-@media (min-width: 600px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 900px) {
+@media (min-width: 641px) {
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 
-@media (min-width: 1160px) {
+@media (min-width: 1024px) {
   .products-grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
   }
 }
 
@@ -3263,52 +3259,137 @@ button, input, select, textarea {
   }
 }
 
-/* 5. Product Grid & Cards on Mobile */
+/* 5. Product Grid & Cards on Mobile (3 Items Per Row / 3 Columns Grid) */
 @media (max-width: 640px) {
+  .container {
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+  }
+
   .products-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1.15rem !important;
-  }
-
-  .product-card {
-    padding: 1rem !important;
-    border-radius: var(--radius-sm) !important;
-  }
-
-  .product-card-img-wrap {
-    height: 220px !important;
-    aspect-ratio: 1 / 1 !important;
-    padding: 1rem !important;
-  }
-
-  .product-card-title {
-    font-size: 0.95rem !important;
-    min-height: auto !important;
-    margin-bottom: 0.45rem !important;
-  }
-
-  .product-specs-pills {
-    margin-bottom: 0.65rem !important;
-  }
-
-  .product-card-pricing {
-    padding-top: 0.5rem !important;
-    margin-bottom: 0.65rem !important;
-  }
-
-  .price-main-val {
-    font-size: 1.25rem !important;
-  }
-
-  .product-card-actions {
-    grid-template-columns: 1fr 1.3fr !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 0.45rem !important;
   }
 
+  .product-card {
+    padding: 0.45rem !important;
+    border-radius: var(--radius-xs) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
+  }
+
+  .product-card-img-wrap {
+    height: auto !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0.35rem !important;
+    border-radius: 4px !important;
+  }
+
+  .product-tag-overlay {
+    top: 0.2rem !important;
+    left: 0.2rem !important;
+  }
+
+  .product-badge {
+    font-size: 0.48rem !important;
+    padding: 0.1rem 0.25rem !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+    letter-spacing: 0 !important;
+    border-radius: 2px !important;
+  }
+
+  .product-card-body {
+    padding-top: 0.35rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+  }
+
+  .product-card-ref {
+    font-size: 0.55rem !important;
+    margin-bottom: 0.1rem !important;
+    line-height: 1 !important;
+  }
+
+  .product-card-title {
+    font-size: 0.72rem !important;
+    line-height: 1.25 !important;
+    min-height: 1.8rem !important;
+    margin-bottom: 0.25rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+  }
+
+  .product-specs-pills {
+    display: none !important;
+  }
+
+  .product-card-pricing {
+    margin-top: auto !important;
+    padding-top: 0.25rem !important;
+    border-top: 1px solid var(--border-soft) !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .price-main-val {
+    font-size: 0.88rem !important;
+    font-weight: 800 !important;
+    line-height: 1 !important;
+  }
+
+  .price-bulk-tag {
+    font-size: 0.52rem !important;
+    margin-top: 0.05rem !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .product-card-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+  }
+
   .product-card-actions .btn {
-    height: 38px !important;
+    width: 100% !important;
+    height: 26px !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    padding: 0 0.2rem !important;
+    border-radius: 4px !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .products-grid {
+    gap: 0.3rem !important;
+  }
+
+  .product-card {
+    padding: 0.35rem !important;
+  }
+
+  .product-card-title {
+    font-size: 0.66rem !important;
+    min-height: 1.6rem !important;
+  }
+
+  .price-main-val {
     font-size: 0.8rem !important;
-    padding: 0.4rem 0.5rem !important;
+  }
+
+  .product-card-actions .btn {
+    height: 24px !important;
+    font-size: 0.6rem !important;
   }
 }
 
