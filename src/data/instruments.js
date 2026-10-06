@@ -1,0 +1,436 @@
+export const INSTRUMENTS_DATA = [
+  // --- SURGICAL INSTRUMENTS ---
+  {
+    id: "sur-01",
+    ref: "SL-SUR-1021",
+    name: "Metzenbaum Dissecting Scissors",
+    category: "surgical",
+    subcategory: "Surgical Scissors",
+    specialty: "General & Cardiovascular Surgery",
+    steelGrade: "German AISI 420 Stainless Steel",
+    finish: "Satin Dull (Glare-Free)",
+    image: "/images/surgical-forceps.jpg",
+    length: "14.5 cm / 18.0 cm",
+    tipType: "Curved Blunt/Blunt Delicate Tips",
+    hardness: "HRC 52 - 54",
+    sterilization: "Autoclavable up to 134°C (273°F)",
+    ceClass: "Class I (EU MDR 2017/745)",
+    isoCompliant: "ISO 13485:2016 & ASTM F895",
+    description: "Engineered for delicate soft-tissue dissection and cutting in deep surgical cavities. Features precision micro-ground curved cutting blades with zero tissue drag.",
+    applications: ["Soft tissue dissection", "Thoracic & abdominal procedures", "Plastic reconstructive surgery"],
+    features: [
+      "Micro-ground cutting edges with bevel angle",
+      "Satin anti-glare finish reduces OR lamp reflection",
+      "Ergonomic finger rings with balanced pivot screw",
+      "Passivated per ASTM A967 for maximum corrosion immunity"
+    ]
+  },
+  {
+    id: "sur-02",
+    ref: "SL-SUR-3042",
+    name: "Mayo-Hegar Needle Holder (Gold TC)",
+    category: "surgical",
+    subcategory: "Needle Holders",
+    specialty: "General, Orthopedic & OB/GYN",
+    steelGrade: "AISI 410 Steel with Tungsten Carbide Inserts",
+    finish: "Gold-Plated Ring Handles (Tungsten Carbide Indicator)",
+    image: "/images/surgical-forceps.jpg",
+    length: "16.0 cm / 18.0 cm / 20.0 cm",
+    tipType: "Serrated Cross-Hatch TC Jaws (0.4mm pitch)",
+    hardness: "HRC 68 - 70 (TC Inserts)",
+    sterilization: "Steam Autoclave / ETO Compatible",
+    ceClass: "Class I (EU MDR 2017/745)",
+    isoCompliant: "ISO 13485:2016 & ISO 7153-1",
+    description: "Heavy-duty surgical needle driver with vacuum-bonded Tungsten Carbide inserts. Precision cross-serrations ensure slip-free grip on large and medium suture needles.",
+    applications: ["Fascial closure", "Deep cavity suturing", "Tendon and muscle repair"],
+    features: [
+      "Genuine Tungsten Carbide brazed inserts",
+      "Multi-position ratchet lock with positive audible click",
+      "Gold-plated handles denoting TC specification",
+      "Eliminates needle rotation during high-tension suturing"
+    ]
+  },
+  {
+    id: "sur-03",
+    ref: "SL-SUR-2015",
+    name: "Crile Hemostatic Forceps",
+    category: "surgical",
+    subcategory: "Hemostats & Clamps",
+    specialty: "General & Vascular Surgery",
+    steelGrade: "AISI 420 Martensitic Stainless Steel",
+    finish: "Satin Matte Finish",
+    image: "/images/hero-instruments.jpg",
+    length: "14.0 cm (Straight & Curved)",
+    tipType: "Transverse Serrations Full Jaw Length",
+    hardness: "HRC 50 - 52",
+    sterilization: "Autoclavable 134°C (273°F)",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Essential hemostat designed for clamping blood vessels, controlling hemorrhage, and grasping disposable drapes or soft tissues without trauma.",
+    applications: ["Arterial & venous hemostasis", "Temporary vessel occlusion", "Tissue retraction"],
+    features: [
+      "Interlocking box joint structure for durability",
+      "Full-length horizontal serrations for uniform grip",
+      "3-position ratchet tension lock",
+      "Laser-etched batch traceability"
+    ]
+  },
+  {
+    id: "sur-04",
+    ref: "SL-SUR-4011",
+    name: "Adson Delicate Tissue Forceps 1x2",
+    category: "surgical",
+    subcategory: "Tissue & Dressing Forceps",
+    specialty: "Plastic, Dermatology & Micro Surgery",
+    steelGrade: "AISI 420 High-Carbon Stainless Steel",
+    finish: "Electropolished Satin Finish",
+    image: "/images/hero-instruments.jpg",
+    length: "12.0 cm",
+    tipType: "1x2 Interlocking Teeth with Cross-Serrations",
+    hardness: "HRC 52 - 54",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Wide thumb-plate forceps providing surgical tactility for delicate dermal handling. 1x2 interlocking mouse-teeth prevent tissue slippage without crushing delicate wound margins.",
+    applications: ["Skin closure", "Subcutaneous flap mobilization", "Cosmetic surgery"],
+    features: [
+      "Wide knurled handle surface for high tactile sensitivity",
+      "Precision-aligned 1x2 teeth with micro-tolerance",
+      "Resilient spring temper that resists fatigue over thousands of cycles",
+      "Tested for ASTM F86 passivation compliance"
+    ]
+  },
+  {
+    id: "sur-05",
+    ref: "SL-SUR-6003",
+    name: "Surgical Scalpel Handle No. 3 & No. 4",
+    category: "surgical",
+    subcategory: "Scalpel Handles",
+    specialty: "Universal Surgical Specialties",
+    steelGrade: "AISI 304 / 420 Stainless Steel",
+    finish: "Satin Finish with Measurement Rule",
+    image: "/images/hero-instruments.jpg",
+    length: "12.5 cm (No. 3) / 13.5 cm (No. 4)",
+    tipType: "Precision Fit Fitment for Standard Surgical Blades",
+    hardness: "HRC 48 - 50",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Solid stainless steel reusable scalpel handles with engraved metric millimeter ruler on handle spine. Fits sterile surgical blades #10, #11, #12, #15 (No. 3) and #20-#24 (No. 4).",
+    applications: ["Primary incision", "Dermal excisions", "Controlled surgical dissection"],
+    features: [
+      "Integrated millimeter scale for real-time incision measuring",
+      "Secure blade locking fitment eliminates blade wobble",
+      "Ergonomic finger fluting for steady grip in moist gloves",
+      "Zero corrosive degradation after repeated autoclave sterilization"
+    ]
+  },
+  {
+    id: "sur-06",
+    ref: "SL-SUR-5008",
+    name: "Senn-Miller Retractor (Double-Ended)",
+    category: "surgical",
+    subcategory: "Retractors & Hooks",
+    specialty: "Orthopedics, Hand Surgery & ENT",
+    steelGrade: "AISI 420 Surgical Stainless Steel",
+    finish: "Satin Matte Finish",
+    image: "/images/hero-instruments.jpg",
+    length: "16.0 cm",
+    tipType: "3-Prong Rake (Sharp/Blunt) + L-Shaped Solid Blade",
+    hardness: "HRC 50 - 52",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Handheld double-ended surgical retractor. Features a 3-prong rake on one end and a miniature solid right-angle retractor blade on the reverse for clear visual fields.",
+    applications: ["Superficial wound exposure", "Carpal tunnel release", "Minor tendon repair"],
+    features: [
+      "Dual-ended versatility saves instrument changes during surgery",
+      "Non-traumatic curved prongs protect neurovascular bundles",
+      "Uniform forged solid construction",
+      "Rigid shank prevents deflection under retraction tension"
+    ]
+  },
+  {
+    id: "sur-07",
+    ref: "SL-SUR-7019",
+    name: "Kerrison Bone Rongeur 45° Up-Biting",
+    category: "surgical",
+    subcategory: "Bone Rongeurs & Orthopedic",
+    specialty: "Orthopedics & Spine Surgery",
+    steelGrade: "Custom Heat-Treated German Martensitic Steel",
+    finish: "Non-Reflective Matte Coating",
+    image: "/images/surgical-forceps.jpg",
+    length: "20.0 cm / Shaft 18 cm",
+    tipType: "3.0 mm Cut Up-Biting 45-degree angle",
+    hardness: "HRC 54 - 56 (Cutting edge)",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016 & ASTM F899",
+    description: "Heavy-duty bone punch for spinal laminectomy and orthopedic osteotomy. Delivers clean, sharp bone resection with minimal operator hand strain.",
+    applications: ["Spinal laminectomy", "Foraminotomy", "Orthopedic bone trimming"],
+    features: [
+      "Precision CNC ground biting footplate with clean shearing action",
+      "Double spring handle mechanism for smooth spring return",
+      "Dismountable option for deep canal lumen sterilization",
+      "Ultra-hardened punch tip maintains sharpness through dense cortical bone"
+    ]
+  },
+
+  // --- DENTAL INSTRUMENTS ---
+  {
+    id: "den-01",
+    ref: "SL-DEN-1102",
+    name: "Dental Extraction Forceps #18R (Upper Molars)",
+    category: "dental",
+    subcategory: "Extraction Forceps",
+    specialty: "Oral Surgery & Exodontia",
+    steelGrade: "AISI 420 German Surgical Steel",
+    finish: "Mirror Satin Contrast / Knurled Non-Slip Grip",
+    image: "/images/dental-collection.jpg",
+    length: "17.5 cm",
+    tipType: "Anatomically Contoured Trifurcated Beaks",
+    hardness: "HRC 52 - 54",
+    sterilization: "Autoclavable 134°C (273°F)",
+    ceClass: "Class I (EU MDR 2017/745)",
+    isoCompliant: "ISO 13485:2016 & ISO 7153-1",
+    description: "Specialized extraction forceps configured specifically for right maxillary first and second molars. The pointed beak fits smoothly into the buccal bifurcation, while the rounded beak grips the palatal root.",
+    applications: ["Upper right molar extraction", "Surgical exodontia", "Implant site preparation"],
+    features: [
+      "Precision anatomic beak curvature hugs root morphology",
+      "Heavy diamond cross-hatched handle provides unyielding wet-glove grip",
+      "Seamless flush hinge joint resists debris buildup and wear",
+      "Engineered leverage ratio minimizes hand fatigue and root fracture risks"
+    ]
+  },
+  {
+    id: "den-02",
+    ref: "SL-DEN-1108",
+    name: "Universal Lower Extraction Forceps #151",
+    category: "dental",
+    subcategory: "Extraction Forceps",
+    specialty: "Oral Surgery & General Dentistry",
+    steelGrade: "AISI 420 Medical Grade Stainless Steel",
+    finish: "Satin Dull Finish with Textured Grip",
+    image: "/images/dental-collection.jpg",
+    length: "17.0 cm",
+    tipType: "Universal Parallel Symmetrical Beaks",
+    hardness: "HRC 52 - 54",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "The premier universal extraction forceps for mandibular incisors, cuspids, bicuspids, and roots. Beaks converge to meet at the cervical margin for optimal apical mechanical advantage.",
+    applications: ["Mandibular anterior and premolar extractions", "Root fragment delivery"],
+    features: [
+      "Universal beak design fits both left and right mandibular teeth",
+      "Tapered beak tips enable deep subgingival seated grip",
+      "Heavy-duty forged rivet joint tested to 5,000 N clamping load",
+      "Full passivation treatment according to ASTM A967"
+    ]
+  },
+  {
+    id: "den-03",
+    ref: "SL-DEN-2204",
+    name: "Coupland Dental Bone Elevators (Set of 3)",
+    category: "dental",
+    subcategory: "Dental Elevators & Luxators",
+    specialty: "Exodontia & Maxillofacial",
+    steelGrade: "AISI 420 High-Tensile Stainless Steel",
+    finish: "Ergonomic Octagonal Satin Handle",
+    image: "/images/dental-collection.jpg",
+    length: "15.0 cm (Sizes: 2.5mm, 3.0mm, 3.5mm)",
+    tipType: "Straight Gouge with Concave Working Tip",
+    hardness: "HRC 53 - 55",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Designed for luxating teeth prior to forceps delivery and severing periodontal ligaments. Straight gouge tips gently expand alveolar bone sockets with progressive mechanical leverage.",
+    applications: ["Periotome action", "Luxation of impacted roots", "Alveolar bone expansion"],
+    features: [
+      "Precision ground concave gouge blade profile",
+      "Heavy ergonomic hexagonal handle maximizes rotational torque",
+      "Solid one-piece forged shaft prevents handle detachment",
+      "Resists bending stress during apical bone engagement"
+    ]
+  },
+  {
+    id: "den-04",
+    ref: "SL-DEN-3301",
+    name: "Williams Periodontal Probe & Explorer (Double-End)",
+    category: "dental",
+    subcategory: "Diagnostic & Examination",
+    specialty: "Periodontics & Preventive Dentistry",
+    steelGrade: "Spring-Tempered AISI 420 Stainless Steel",
+    finish: "High-Contrast Laser Markings with Knurled Handle",
+    image: "/images/dental-collection.jpg",
+    length: "17.0 cm",
+    tipType: "Williams Scale (1-2-3-5-7-8-9-10 mm) & Shepherd Hook #23",
+    hardness: "HRC 50 - 52",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Dual-ended diagnostic instrument combining the globally recognized Williams periodontal probe calibrated in millimeters with the ultra-sensitive #23 Shepherd's hook explorer.",
+    applications: ["Sulcular pocket depth measurement", "Caries detection", "Calculus exploration"],
+    features: [
+      "Permanent laser-engraved millimeter bands that will never wear off",
+      "Blunted 0.5mm probe ball-tip preserves junctional epithelium",
+      "High spring elasticity tip delivers tactile resonance into finger rests",
+      "Ultra-lightweight hollow handle options for reducing clinician fatigue"
+    ]
+  },
+  {
+    id: "den-05",
+    ref: "SL-DEN-4412",
+    name: "Gracey Subgingival Curettes Full Set (7 Instruments)",
+    category: "dental",
+    subcategory: "Periodontal Scalers & Curettes",
+    specialty: "Periodontics & Dental Hygiene",
+    steelGrade: "AISI 440A High Carbon Cryo-Treated Steel",
+    finish: "Satin Non-Reflective / Dual-Tone Titanium Accent",
+    image: "/images/dental-collection.jpg",
+    length: "17.2 cm",
+    tipType: "Area-Specific Offset Blades (70° Angle to Shank)",
+    hardness: "HRC 56 - 58 (Extreme Edge Retention)",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Gold-standard area-specific curettes designed for root planing and deep subgingival debridement. Only one cutting edge per blade allows non-traumatic tissue contact against sulcus walls.",
+    applications: ["Deep pocket root debridement", "Subgingival calculus removal", "Root cementum smoothing"],
+    features: [
+      "Cryogenic heat treatment extends cutting edge life 300% over ordinary steel",
+      "Includes Gracey 1/2, 3/4, 5/6, 7/8, 9/10, 11/12, 13/14 configurations",
+      "Rounded toe and convex back prevent soft tissue gouging",
+      "Optimal tactile feedback through 9.5mm ergonomic grip barrels"
+    ]
+  },
+  {
+    id: "den-06",
+    ref: "SL-DEN-4420",
+    name: "Sickle Scaler H6/H7 Anterior",
+    category: "dental",
+    subcategory: "Periodontal Scalers & Curettes",
+    specialty: "Dental Hygiene & Prophylaxis",
+    steelGrade: "AISI 420 High Carbon Surgical Steel",
+    finish: "Satin Matte Polish",
+    image: "/images/dental-collection.jpg",
+    length: "17.0 cm",
+    tipType: "Triangular Cross-Section Dual Sharp Cutting Edges",
+    hardness: "HRC 54 - 56",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Designed for removing moderate to heavy supragingival calculus deposits on anterior teeth and premolars. Pointed tip reaches narrow interproximal embrasures.",
+    applications: ["Supragingival scaling", "Interdental stain removal", "Prophylaxis"],
+    features: [
+      "Ultra-sharp pointed tip accesses tight contact areas",
+      "Dual working ends with balanced opposing angulations",
+      "Non-slip micro-knurled grip barrel",
+      "Zero corrosion in chemical and steam autoclave cycles"
+    ]
+  },
+  {
+    id: "den-07",
+    ref: "SL-DEN-5503",
+    name: "Front-Surface Rhodium Dental Mouth Mirror #5 with Handle",
+    category: "dental",
+    subcategory: "Diagnostic & Examination",
+    specialty: "General Dentistry, Endodontics & Surgery",
+    steelGrade: "AISI 304 Stainless Steel Stem & Handle",
+    finish: "Rhodium Coated Front Surface / Satin Stem",
+    image: "/images/dental-collection.jpg",
+    length: "16.5 cm (Mirror Head Dia 24mm)",
+    tipType: "Front Surface Distortion-Free Optical Reflector",
+    hardness: "Scratch-Resistant Rhodium Coated Glass",
+    sterilization: "Autoclavable 134°C (Anti-Fog Compatible)",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Ultra-sharp front surface rhodium mouth mirror eliminates double-image ghost reflections common to back-surface mirrors. Provides true indirect vision and cheek retraction.",
+    applications: ["Indirect vision", "Tissue retraction", "Illumination reflection into tooth prep"],
+    features: [
+      "Front surface rhodium eliminates parallax ghosting",
+      "Standard cone socket / simple stem screw thread fits all handles",
+      "Welded joint seals out autoclave steam and prevents mirror fogging",
+      "Scratch-resistant coating endures ultrasonic cleaning baths"
+    ]
+  },
+  {
+    id: "den-08",
+    ref: "SL-DEN-6610",
+    name: "Mathieu Orthodontic & Dental Needle Holder / Ligature Plier",
+    category: "dental",
+    subcategory: "Orthodontic & Surgical Pliers",
+    specialty: "Orthodontics & Dental Surgery",
+    steelGrade: "AISI 420 Surgical Stainless Steel with TC Tips option",
+    finish: "Satin Dull Finish with Gold Ratchet Accents",
+    image: "/images/surgical-forceps.jpg",
+    length: "14.0 cm",
+    tipType: "Fine Serrated Beaks with Multi-Click Palm Release",
+    hardness: "HRC 52 - 54",
+    sterilization: "Autoclavable 134°C",
+    ceClass: "Class I",
+    isoCompliant: "ISO 13485:2016",
+    description: "Squeeze-to-release internal palm ratchet plier. Widely used for placement of elastomeric ligatures, grasping orthodontic archwires, and delicate dental suture placement.",
+    applications: ["Elastomeric ligature tying", "Archwire seating", "Intraoral suturing"],
+    features: [
+      "Spring-assisted palm action allows rapid lock and release with a single squeeze",
+      "Fine cross-serrated beaks hold wire and sutures securely without slipping",
+      "Smooth rounded external edges protect oral soft tissues",
+      "Internal ratchet mechanism precision-machined for longevity"
+    ]
+  }
+];
+
+export const CATEGORIES = [
+  { id: "all", label: "All Instruments", icon: "LayoutGrid" },
+  { id: "surgical", label: "Surgical Instruments", icon: "Scissors", count: 7 },
+  { id: "dental", label: "Dental Instruments", icon: "Smile", count: 8 }
+];
+
+export const SURGICAL_SUBCATEGORIES = [
+  "All Surgical",
+  "Surgical Scissors",
+  "Needle Holders",
+  "Hemostats & Clamps",
+  "Tissue & Dressing Forceps",
+  "Scalpel Handles",
+  "Retractors & Hooks",
+  "Bone Rongeurs & Orthopedic"
+];
+
+export const DENTAL_SUBCATEGORIES = [
+  "All Dental",
+  "Extraction Forceps",
+  "Dental Elevators & Luxators",
+  "Diagnostic & Examination",
+  "Periodontal Scalers & Curettes",
+  "Orthodontic & Surgical Pliers"
+];
+
+export const COMPANY_INFO = {
+  name: "SURGILENCE (PVT) LTD",
+  tagline: "Excellence in Surgical & Dental Precision",
+  founded: "Certified Manufacturer & Exporter",
+  registration: "Private Limited Corporation",
+  address: "Precision Industrial Estate, Manufacturing Zone, Sialkot - Pakistan",
+  email: "info@surgilence.com",
+  salesEmail: "inquiry@surgilence.com",
+  phone: "+92 309 1699666",
+  whatsapp: "+92 309 1699666",
+  // Social links ready for user's URLs
+  social: {
+    facebook: "https://facebook.com/surgilence",
+    instagram: "https://instagram.com/surgilence",
+    linkedin: "https://linkedin.com/company/surgilence"
+  },
+  certifications: [
+    { code: "ISO 13485:2016", title: "Medical Devices Quality Management System", body: "Certified for design, manufacture & supply of non-invasive & surgical invasive medical instruments." },
+    { code: "CE Marking", title: "European Medical Device Regulation (MDR 2017/745)", body: "Fully compliant with Class I and Class IIa surgical standards and clinical safety requirements." },
+    { code: "cGMP Certified", title: "Current Good Manufacturing Practice", body: "Rigorous cleanroom production, ultrasonic degreasing, and lot-by-lot metallurgical verification." },
+    { code: "ASTM F899 & ISO 7153-1", title: "Standard Specification for Wrought Stainless Steels", body: "Authentic German and French raw steel billets with complete mill test certificates (MTR)." }
+  ],
+  manufacturingStats: [
+    { label: "Instruments Produced Annually", value: "850,000+" },
+    { label: "Countries Exported To", value: "48+" },
+    { label: "Passivation Test Compliance", value: "100%" },
+    { label: "Client Re-Order Rate", value: "99.4%" }
+  ]
+};

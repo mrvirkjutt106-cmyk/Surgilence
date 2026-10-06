@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0A1128"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" stroke="#00D2D3" stroke-width="2" stroke-opacity="0.4"/>
+  <!-- Medical / Surgical cross with precision caliper tip -->
+  <path d="M26 12H38V26H52V38H38V52H26V38H12V26H26V12Z" fill="url(#teal-grad)"/>
+  <circle cx="32" cy="32" r="4" fill="#0A1128"/>
+  <circle cx="32" cy="32" r="2" fill="#00D2D3"/>
+  <defs>
+    <linearGradient id="teal-grad" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D2D3"/>
+      <stop offset="1" stop-color="#0984E3"/>
+    </linearGradient>
+  </defs>
+</svg>
