@@ -219,6 +219,10 @@ export default function CatalogPage() {
                         alt={item.name}
                         className="product-card-img"
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = '/images/item-metzenbaum-scissors.png';
+                        }}
                       />
                       <div className="product-tag-overlay">
                         <span className={`product-badge ${isTC ? 'product-badge-tc' : item.category === 'surgical' ? 'product-badge-surgical' : 'product-badge-dental'}`}>

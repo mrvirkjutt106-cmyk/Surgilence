@@ -77,6 +77,10 @@ export default function ProductDetailPage() {
               src={product.image}
               alt={product.name}
               className="product-stage-img"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = '/images/item-metzenbaum-scissors.png';
+              }}
             />
             {isTC && (
               <div className="absolute top-4 right-4 bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">

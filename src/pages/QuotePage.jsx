@@ -150,7 +150,15 @@ export default function QuotePage() {
                       className="flex items-center gap-4 p-3 bg-slate-50 rounded-lg border border-slate-200"
                     >
                       <div className="w-14 h-14 bg-white border border-slate-200 rounded-md p-1 shrink-0 flex items-center justify-center">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/images/item-mayo-hegar-tc.png';
+                          }}
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <span className="text-[10px] font-mono text-teal-700 font-bold block">{item.ref}</span>

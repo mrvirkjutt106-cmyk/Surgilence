@@ -423,7 +423,15 @@ export default function CheckoutPage() {
                       {cartItems.map((item) => (
                         <div key={item.id} className="flex items-center gap-3 pb-3 border-b border-slate-100">
                           <div className="w-12 h-12 bg-white border border-slate-200 rounded p-1 shrink-0 flex items-center justify-center">
-                            <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-contain"
+                              onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src = '/images/item-metzenbaum-scissors.png';
+                              }}
+                            />
                           </div>
                           <div className="flex-1 min-w-0">
                             <h4 className="text-xs font-bold text-slate-800 truncate">{item.name}</h4>
